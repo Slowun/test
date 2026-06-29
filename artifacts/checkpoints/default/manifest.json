@@ -1,0 +1,71 @@
+{
+  "stages": {
+    "data_acquisition": {
+      "ts": "2026-06-20T13:53:20.184307+00:00",
+      "meta": {
+        "duration_s": 0.053
+      }
+    },
+    "market_analysis": {
+      "ts": "2026-06-20T13:53:37.279463+00:00",
+      "meta": {
+        "duration_s": 17.077
+      }
+    },
+    "heston_calibration": {
+      "ts": "2026-06-20T13:54:36.480461+00:00",
+      "meta": {
+        "duration_s": 59.191
+      }
+    },
+    "greeks_calculation": {
+      "ts": "2026-06-20T13:54:36.880463+00:00",
+      "meta": {
+        "duration_s": 0.385
+      }
+    },
+    "hedging_decision": {
+      "ts": "2026-06-20T13:54:37.553476+00:00",
+      "meta": {
+        "duration_s": 0.662
+      }
+    },
+    "portfolio_optimization": {
+      "ts": "2026-06-20T13:54:38.331462+00:00",
+      "meta": {
+        "duration_s": 0.76
+      }
+    },
+    "risk_management": {
+      "ts": "2026-06-20T13:54:38.349460+00:00",
+      "meta": {
+        "duration_s": 0.011
+      }
+    },
+    "backtesting": {
+      "ts": "2026-06-20T13:54:38.846461+00:00",
+      "meta": {
+        "duration_s": 0.483
+      }
+    },
+    "self_diagnostic": {
+      "ts": "2026-06-20T13:54:38.854462+00:00",
+      "meta": {
+        "duration_s": 0.004
+      }
+    },
+    "explainability": {
+      "ts": "2026-06-20T13:54:38.870463+00:00",
+      "meta": {
+        "duration_s": 0.01
+      }
+    },
+    "dashboard": {
+      "ts": "2026-06-20T13:54:40.457789+00:00",
+      "meta": {
+        "duration_s": 1.584
+      }
+    }
+  },
+  "created": "2026-06-18T23:08:40.345525+00:00"
+}

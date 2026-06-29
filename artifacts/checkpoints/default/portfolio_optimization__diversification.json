@@ -1,0 +1,11 @@
+{
+  "diversification_ratio": 1.629762026231892,
+  "avg_diversification_ratio": 1.6593060668276376,
+  "effective_n": 13.696237768988393,
+  "n_active": 15,
+  "max_weight": 0.1257546301357444,
+  "hhi": 0.07301275115595925,
+  "n_rebalances": 13,
+  "n_assets": 15,
+  "benchmark_diversification_ratio": 1.5517602800364234
+}

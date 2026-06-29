@@ -1,0 +1,12 @@
+{
+  "var": 5.508296371042232e-05,
+  "cvar": 6.905406070736266e-05,
+  "expected_shortfall": 6.905406070736266e-05,
+  "max_drawdown": -0.00030409951625534875,
+  "within_limits": true,
+  "breached_limits": [],
+  "utilization": {
+    "var_vs_limit": 0.0011016592742084464,
+    "drawdown_vs_limit": 0.001216398065021395
+  }
+}

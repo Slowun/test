@@ -1,0 +1,25 @@
+# ============================================================================
+# data.yaml — конфигурация СБОРА ДАННЫХ (агент 1 DataAcquisition).
+# Загружается core/config.py → секция data (модель DataConfig).
+# Провайдер выбирается строкой `provider` и создаётся в services/providers/.
+# ============================================================================
+
+# Data acquisition. Provider is pluggable:
+#   bundled   - reads the reproducible, version-controlled dataset (default, offline)
+#   synthetic - regenerates the dataset deterministically from `seed`
+#   binance   - live spot via Binance public REST (no key); options stay Heston-consistent
+data:
+  provider: bundled            # активный источник данных: bundled | synthetic | binance
+  primary_symbol: BTCUSDT      # первичный (хеджируемый) актив
+  quote_currency: USDT         # котировочная валюта вселенной
+  universe_size: 100           # размер вселенной спот-инструментов
+  symbols: []                  # empty -> curated default universe, padded to universe_size  # явный список (пусто=дефолт)
+  bar_interval: 1d             # интервал баров (дневные свечи)
+  option_expiry_days: 30       # 30-day expiry option chain for the primary asset  # срок до экспирации опционов
+  options_universe:            # активы, для которых строится опционная цепочка
+    - BTCUSDT                  #   только BTC
+  n_strikes_per_expiry: 11     # число страйков в цепочке на одну экспирацию
+  strike_width_pct: 0.6        # ширина сетки страйков (±60% вокруг форварда)
+  binance_base_url: https://api.binance.com  # базовый URL публичного REST Binance
+  request_timeout_s: 15.0      # таймаут HTTP-запроса к Binance (сек)
+  cache_raw: true              # кэшировать ли сырые загруженные данные на диск

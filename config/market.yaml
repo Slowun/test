@@ -1,0 +1,70 @@
+# ============================================================================
+# market.yaml — конфигурация АНАЛИЗА РЫНКА, КАЛИБРОВКИ, ГРЕКОВ и ХЕДЖА.
+# Загружается core/config.py → секции market_analysis, heston, greeks, hedging.
+# Используется агентами 2 (MarketAnalysis), 3 (HestonCalibration),
+# 4 (GreeksCalculation), 5 (HedgingDecision) и их сервисами.
+# ============================================================================
+
+# Market analysis, Heston calibration, greeks and hedging strategy parameters.
+market_analysis:                 # → MarketAnalysisConfig (агент 2)
+  vol_window: 30                 # окно оценки волатильности (дн.)
+  vol_of_vol_window: 30          # окно оценки волатильности волатильности
+  confidence_level: 0.95         # доверительный уровень
+  regime_n_states: 3             # число режимов рынка (кластеров)
+  regime_window: 30              # окно определения текущего режима
+  top_n_hedge_instruments: 10    # сколько лучших инструментов хеджа отобрать
+  correlation:                   # → CorrelationConfig: методы и пороги корреляций
+    methods: [pearson, spearman, kendall, dcc_garch, cointegration]  # какие меры связи считать
+    rolling_window: 30           # окно скользящей корреляции
+    positive_threshold: 0.5      # порог «сильной положительной» связи
+    negative_threshold: -0.3     # порог «отрицательной» связи
+    zero_band: 0.1               # зона около нуля (связь считается незначимой)
+    dcc_a: 0.02                  # параметр a модели DCC-GARCH
+    dcc_b: 0.95                  # параметр b модели DCC-GARCH
+    dcc_max_iter: 50             # макс. итераций оценки DCC
+    cointegration_method: both     # engle_granger | johansen | both   # метод теста коинтеграции
+    cointegration_pvalue: 0.05   # порог p-value для коинтеграции
+    johansen_det_order: 0        # порядок детерминированной компоненты (тест Johansen)
+    johansen_k_ar_diff: 1        # число лагов разностей (тест Johansen)
+  ranking_weights:               # → RankingWeights: веса критериев рейтинга инструментов хеджа
+    correlation: 0.30            # вклад корреляции
+    stability: 0.25              # вклад устойчивости связи
+    liquidity: 0.15              # вклад ликвидности
+    hedge_cost: 0.15             # вклад стоимости хеджа
+    risk_reduction: 0.15         # вклад снижения риска
+
+heston:                          # → HestonConfig (агент 3): модель Хестона
+  calibration_method: iv_surface   # iv_surface | mle   # метод калибровки параметров
+  num_iter: 50                   # макс. итераций оптимизатора калибровки
+  tol: 1.0e-8                    # допуск сходимости
+  initial_params: [0.04, 2.0, 0.04, 0.5, -0.5]   # v0, kappa, theta, eps, rho   # стартовые параметры
+  mle_n_steps: 90                # число шагов для метода MLE
+  stability_window: 10           # окно контроля устойчивости параметров
+  stability_max_rel_change: 0.5  # макс. относительное изменение параметров (контроль устойчивости)
+  benchmarks: [black_scholes, sabr]  # модели для сравнения качества (бенчмарки)
+  sabr_beta: 0.5                 # параметр β модели SABR (бенчмарк)
+  flat_yield_fallback: 0.0       # безрисковая ставка по умолчанию, если кривой нет
+
+greeks:                          # → GreeksConfig (агент 4): расчёт греков
+  engine: analytical               # analytical | mc   # движок: аналитика или Монте-Карло
+  spot_bump_pct: 0.01            # сдвиг спота для конечных разностей (1%)
+  vol_bump: 0.01                 # сдвиг волатильности
+  time_bump_days: 1.0            # сдвиг времени (для theta), дн.
+  rate_bump: 0.0001              # сдвиг ставки (для rho)
+  mc_n_paths: 50000              # число траекторий Монте-Карло
+  mc_max_dt: 0.0137              # макс. шаг по времени в МК (~5/365)
+  mc_min_steps: 40               # мин. число шагов в МК
+  mc_minimum_var: 0.01           # нижняя отсечка дисперсии в МК
+  greeks_to_compute: [delta, gamma, vega, theta, rho, vanna, volga, charm]  # список считаемых греков
+
+hedging:                         # → HedgingConfig (агент 5): параметры стратегии хеджа
+  delta_eps: 0.0                 # допуск по дельте (порог срабатывания ребаланса)
+  vega_eps: 0.0                  # допуск по веге (порог срабатывания ребаланса)
+  delta_green_zone: 0.05         # «зелёная» зона: |Δ|/капитал считается сбалансированным
+  delta_red_zone: 0.15           # «красная» зона: требуется ребаланс дельты
+  target_delta: 0.0              # целевая дельта (нейтральная)
+  target_vega: 0.0               # целевая вега (нейтральная)
+  hedge_instrument_strike_moneyness: 1.0   # moneyness хедж-опциона (ATM по умолчанию)
+  liability_put_moneyness: 0.95  # страйк защитного put как доля от спота (книга обязательств)
+  vega_call_moneyness: 1.0       # страйк vega-call как доля от спота
+  calibration_subsample: 1       # калибровать каждый k-й срез (1 = каждый срез)

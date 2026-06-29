@@ -1,0 +1,58 @@
+# ============================================================================
+# portfolio.yaml — ОПТИМИЗАЦИЯ ПОРТФЕЛЯ, РИСК и БЭКТЕСТ.
+# Загружается core/config.py → секции optimization, risk, backtest.
+# Используется агентами 6 (PortfolioOptimization), 7 (RiskManagement),
+# 8 (Backtesting) и их сервисами.
+# ============================================================================
+
+# Portfolio optimisation, risk management and backtesting.
+optimization:                       # → OptimizationConfig (агент 6)
+  method: max_diversification       # fallback method if auto-select is off  # метод по умолчанию
+  methods: [mean_variance, risk_parity, min_variance, max_diversification, cvar]  # пул методов для авто-выбора
+  rebalance_frequency_days: 5       # частота ребалансировки портфеля (дн.)
+  max_turnover: 0.5                 # макс. оборот при одной ребалансировке
+  transaction_cost_aversion: 1.0    # неприятие транзакционных издержек
+  risk_aversion: 5.0                # коэффициент неприятия риска (для mean-variance)
+  cvar_alpha: 0.95                  # уровень α для метода CVaR
+  long_only: true                   # только длинные позиции (без шортов)
+  max_weight: 0.2                   # cap per-asset weight to enforce diversification  # макс. вес актива (20%)
+  portfolio_universe_size: 15       # instruments held in the investable portfolio    # активов в портфеле
+  lookback_days: 30                 # trailing window for re-estimating weights        # окно переоценки весов
+  min_expected_return: 0.0          # prefer a profitable portfolio when selecting     # порог доходности при выборе
+  diversification_weight: 0.5       # weight of diversification vs Sharpe in selection # вес диверсификации в score
+  auto_select_method: true          # choose the best method by the selection score    # авто-выбор лучшего метода
+
+risk:                               # → RiskConfig (агент 7)
+  var_method: historical            # historical | gaussian | cornish_fisher  # метод оценки VaR
+  var_confidence: 0.95              # доверительный уровень VaR
+  cvar_confidence: 0.95             # доверительный уровень CVaR
+  var_limit_pct: 0.05               # лимит дневного VaR (5%)
+  max_drawdown_limit_pct: 0.25      # лимит максимальной просадки (25%)
+  leverage_limit: 3.0               # лимит плеча (3×)
+  stop_loss:                        # → StopLossConfig: адаптивные стоп-лоссы
+    enabled: true                   # включены ли стоп-лоссы
+    atr_window: 14                  # окно ATR
+    atr_multiplier: 3.0             # множитель ATR для дистанции стопа
+    var_multiplier: 1.5             # множитель VaR для дистанции стопа
+    trailing: true                  # использовать ли трейлинг-стоп
+    trailing_atr_multiplier: 2.5    # множитель ATR для трейлинга
+    min_stop_pct: 0.02              # минимальная дистанция стопа (2%)
+    max_stop_pct: 0.25              # максимальная дистанция стопа (25%)
+    recalibrate_window: 30          # окно перерасчёта параметров стопа
+
+backtest:                           # → BacktestConfig (агент 8): walk-forward и стресс
+  mode: walk_forward                # режим бэктеста
+  train_window: 30                  # окно обучения (дн.)
+  test_window: 5                    # окно теста (дн.)
+  step: 5                           # шаг сдвига окон
+  purge: 0                          # «очистка» баров между train/test (защита от утечки)
+  embargo: 0                        # «эмбарго» после теста
+  account_survivorship_bias: true   # учитывать ли survivorship bias
+  account_selection_bias: true      # учитывать ли selection bias
+  account_transaction_cost_bias: true  # учитывать ли transaction-cost bias
+  stress_scenarios:                 # набор стресс-сценариев (шок цены/волатильности)
+    - {name: "crash_-10pct", spot_shock: -0.10, vol_shock: 0.50}  # обвал −10%, vol +50%
+    - {name: "crash_-5pct",  spot_shock: -0.05, vol_shock: 0.25}  # обвал −5%, vol +25%
+    - {name: "rally_+5pct",  spot_shock: 0.05,  vol_shock: -0.10}  # рост +5%, vol −10%
+    - {name: "rally_+10pct", spot_shock: 0.10,  vol_shock: -0.20}  # рост +10%, vol −20%
+    - {name: "vol_spike",    spot_shock: 0.0,   vol_shock: 1.00}  # скачок только волатильности (+100%)

@@ -1,0 +1,18 @@
+{
+  "liability": [
+    {
+      "underlying": "BTCUSDT",
+      "strike": 45000.0,
+      "expiry_ts": 1714521600000000000,
+      "is_call": false,
+      "notional": 28.542764071910845
+    }
+  ],
+  "vega_option": {
+    "underlying": "BTCUSDT",
+    "strike": 45000.0,
+    "expiry_ts": 1714521600000000000,
+    "is_call": true,
+    "notional": 1.0
+  }
+}

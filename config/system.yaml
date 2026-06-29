@@ -1,0 +1,38 @@
+# ============================================================================
+# system.yaml — БАЗОВАЯ конфигурация системы.
+# Загружается core/config.py → секции: seed, run_id, investment, horizons,
+# paths, runtime (модели SystemConfig/InvestmentConfig/HorizonsConfig/...).
+# ============================================================================
+
+# Core system configuration. Every random process is seeded from `seed`.
+seed: 90909090                 # ЕДИНЫЙ seed: фиксирует ВСЕ генераторы случайностей (воспроизводимость)
+run_id: default                # идентификатор прогона (подкаталог чекпойнтов artifacts/checkpoints/<run_id>)
+
+investment:                    # → InvestmentConfig: деньги, риск-аппетит, комиссии
+  capital_usd: 10000000.0      # $10M investment        # капитал фонда в долларах
+  risk_budget_pct: 0.02        # max fraction of capital at 1-day risk (VaR); BTC daily VaR ~5%  # бюджет риска 2%
+
+  transaction_fee_pct: 0.0003  # spot taker fee         # комиссия за спот-сделку (0.03%)
+  option_fee_pct: 0.0003       # option fee on underlying notional (Deribit-style)  # комиссия опциона (0.03%)
+  option_fee_cap_pct: 0.125    # option fee capped at 12.5% of option price         # кап комиссии: 12.5% цены опциона
+
+horizons:                      # → HorizonsConfig: временны́е горизонты
+  analysis_days: 90            # ~3 months historical look-back   # окно истории для анализа
+  forecast_days: 1             # 1-day forecasting horizon        # горизонт прогноза (1 день)
+  trading_days_per_year: 365   # crypto trades 24/7               # дней в году (крипта торгуется без выходных)
+
+paths:                         # → PathsConfig: каталоги (создаются автоматически)
+  data_dir: data                       # корень данных
+  raw_dir: data/raw                    # сырые данные
+  processed_dir: data/processed        # обработанные данные
+  artifacts_dir: artifacts             # корень артефактов прогона
+  checkpoint_dir: artifacts/checkpoints  # чекпойнты этапов
+  calibration_dir: artifacts/calibration # данные калибровки Хестона
+  results_dir: artifacts/results       # результаты (parquet, дашборды)
+  log_dir: artifacts/logs              # файлы логов
+
+runtime:                       # → RuntimeConfig: параметры выполнения
+  parallel: true               # разрешить параллельные вычисления
+  n_jobs: -1                   # число потоков (-1 = использовать все ядра)
+  checkpointing: true          # сохранять чекпойнты этапов
+  resume: true                 # возобновлять прогон из чекпойнтов (пропускать готовые этапы)

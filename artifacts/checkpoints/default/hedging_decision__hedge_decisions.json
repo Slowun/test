@@ -1,0 +1,1465 @@
+[
+  {
+    "timestamp": 1704153600000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 28.542764071910845,
+    "target_greek": "vega",
+    "pre_hedge_value": 0.0,
+    "post_hedge_value": 242547.0054878985,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 242547.0054878985,
+      "option_vega": 8497.670543638445
+    }
+  },
+  {
+    "timestamp": 1704153600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 28.542764071910845,
+    "target_greek": "delta",
+    "pre_hedge_value": 16.49695295417937,
+    "post_hedge_value": -12.045811117731475,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -12.045811117731475
+    }
+  },
+  {
+    "timestamp": 1704240000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 2.1316282072803006e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -12.891920682217181,
+    "post_hedge_value": -12.891920682217203,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -12.891920682217203
+    }
+  },
+  {
+    "timestamp": 1704326400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 7.105427357601002e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -12.253469419755671,
+    "post_hedge_value": -12.2534694197556,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -12.2534694197556
+    }
+  },
+  {
+    "timestamp": 1704412800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.9539925233402755e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.807852214193801,
+    "post_hedge_value": -10.80785221419382,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.80785221419382
+    }
+  },
+  {
+    "timestamp": 1704499200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.2079226507921703e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.643622090273006,
+    "post_hedge_value": -10.643622090273126,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.643622090273126
+    }
+  },
+  {
+    "timestamp": 1704585600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.7355895326763857e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.273138747825904,
+    "post_hedge_value": -11.27313874782563,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.27313874782563
+    }
+  },
+  {
+    "timestamp": 1704672000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 2.0961010704922955e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.886018102413761,
+    "post_hedge_value": -11.88601810241397,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.88601810241397
+    }
+  },
+  {
+    "timestamp": 1704758400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.0125233984581428e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -12.295641432668386,
+    "post_hedge_value": -12.295641432668488,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -12.295641432668488
+    }
+  },
+  {
+    "timestamp": 1704844800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 7.283063041541027e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -12.193307293812136,
+    "post_hedge_value": -12.193307293812063,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -12.193307293812063
+    }
+  },
+  {
+    "timestamp": 1704931200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 8.881784197001252e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.95790642917241,
+    "post_hedge_value": -11.9579064291725,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.9579064291725
+    }
+  },
+  {
+    "timestamp": 1705017600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.220446049250313e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.35492428201108,
+    "post_hedge_value": -11.354924282010858,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.354924282010858
+    }
+  },
+  {
+    "timestamp": 1705104000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.375077994860476e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.827747342032886,
+    "post_hedge_value": -10.82774734203292,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.82774734203292
+    }
+  },
+  {
+    "timestamp": 1705190400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.616484723854228e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.827241669820701,
+    "post_hedge_value": -10.827241669820863,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.827241669820863
+    }
+  },
+  {
+    "timestamp": 1705276800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.4921397450962104e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.15597549571454,
+    "post_hedge_value": -10.15597549571439,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.15597549571439
+    }
+  },
+  {
+    "timestamp": 1705363200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.3092638912203256e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.94482344380604,
+    "post_hedge_value": -10.944823443806017,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.944823443806017
+    }
+  },
+  {
+    "timestamp": 1705449600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.9539925233402755e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.8371510031429,
+    "post_hedge_value": -10.837151003143095,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.837151003143095
+    }
+  },
+  {
+    "timestamp": 1705536000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.865174681370263e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.96643341402008,
+    "post_hedge_value": -9.966433414019894,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.966433414019894
+    }
+  },
+  {
+    "timestamp": 1705622400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.1723955140041653e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.91756050283798,
+    "post_hedge_value": -9.917560502837862,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.917560502837862
+    }
+  },
+  {
+    "timestamp": 1705708800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 2.1316282072803006e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.889359521869313,
+    "post_hedge_value": -9.889359521869526,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.889359521869526
+    }
+  },
+  {
+    "timestamp": 1705795200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 4.085620730620576e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.76010530252666,
+    "post_hedge_value": -10.760105302526702,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.760105302526702
+    }
+  },
+  {
+    "timestamp": 1705881600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 3.1441516057384433e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.695471625693411,
+    "post_hedge_value": -11.695471625693097,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.695471625693097
+    }
+  },
+  {
+    "timestamp": 1705968000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.623767952376511e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.300310201206209,
+    "post_hedge_value": -11.300310201206571,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.300310201206571
+    }
+  },
+  {
+    "timestamp": 1706054400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 3.588240815588506e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.394760532885748,
+    "post_hedge_value": -10.394760532885389,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.394760532885389
+    }
+  },
+  {
+    "timestamp": 1706140800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.7836400679225335e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.214791626067647,
+    "post_hedge_value": -11.214791626068026,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.214791626068026
+    }
+  },
+  {
+    "timestamp": 1706227200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 3.019806626980426e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.675449346024898,
+    "post_hedge_value": -10.675449346024868,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.675449346024868
+    }
+  },
+  {
+    "timestamp": 1706313600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.575717417130363e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.915778775678902,
+    "post_hedge_value": -10.915778775678644,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.915778775678644
+    }
+  },
+  {
+    "timestamp": 1706400000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.474376176702208e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.74315163782483,
+    "post_hedge_value": -10.743151637824978,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.743151637824978
+    }
+  },
+  {
+    "timestamp": 1706486400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.3092638912203256e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.235789280508978,
+    "post_hedge_value": -9.235789280508747,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.235789280508747
+    }
+  },
+  {
+    "timestamp": 1706572800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.2862601528904634e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.220132285139808,
+    "post_hedge_value": -9.220132285140137,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.220132285140137
+    }
+  },
+  {
+    "timestamp": 1706659200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.149391775674303e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.34918061083237,
+    "post_hedge_value": -9.349180610832155,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.349180610832155
+    }
+  },
+  {
+    "timestamp": 1706745600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 9.947598300641403e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -8.414465755552442,
+    "post_hedge_value": -8.414465755552541,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -8.414465755552541
+    }
+  },
+  {
+    "timestamp": 1706832000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.4566126083082054e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -8.335438811579877,
+    "post_hedge_value": -8.335438811580023,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -8.335438811580023
+    }
+  },
+  {
+    "timestamp": 1706918400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.4513724383723456e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -8.445146689929985,
+    "post_hedge_value": -8.44514668992974,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -8.44514668992974
+    }
+  },
+  {
+    "timestamp": 1707004800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.5987211554602254e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -7.794216654965155,
+    "post_hedge_value": -7.7942166549653145,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -7.7942166549653145
+    }
+  },
+  {
+    "timestamp": 1707091200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.545430450278218e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -8.231539390329562,
+    "post_hedge_value": -8.231539390329408,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -8.231539390329408
+    }
+  },
+  {
+    "timestamp": 1707177600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.758593271006248e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -8.549906133730929,
+    "post_hedge_value": -8.549906133731104,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -8.549906133731104
+    }
+  },
+  {
+    "timestamp": 1707264000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.5543122344752192e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -7.6985684824715115,
+    "post_hedge_value": -7.698568482471356,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -7.698568482471356
+    }
+  },
+  {
+    "timestamp": 1707350400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.6645352591003757e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.222894593722362,
+    "post_hedge_value": -9.222894593722335,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.222894593722335
+    }
+  },
+  {
+    "timestamp": 1707436800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.3855583347321954e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.001347240311489,
+    "post_hedge_value": -11.001347240311627,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.001347240311627
+    }
+  },
+  {
+    "timestamp": 1707523200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.5987211554602254e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -13.533974646033219,
+    "post_hedge_value": -13.533974646033235,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -13.533974646033235
+    }
+  },
+  {
+    "timestamp": 1707609600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 5.1514348342607263e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -13.565631215122714,
+    "post_hedge_value": -13.565631215122766,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -13.565631215122766
+    }
+  },
+  {
+    "timestamp": 1707696000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.5579538487363607e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -14.487949994906964,
+    "post_hedge_value": -14.487949994906709,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -14.487949994906709
+    }
+  },
+  {
+    "timestamp": 1707782400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 8.526512829121202e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -16.51168499975978,
+    "post_hedge_value": -16.511684999759694,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -16.511684999759694
+    }
+  },
+  {
+    "timestamp": 1707868800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.3855583347321954e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -16.83560591144505,
+    "post_hedge_value": -16.83560591144519,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -16.83560591144519
+    }
+  },
+  {
+    "timestamp": 1707955200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.9539925233402755e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -15.930513756481039,
+    "post_hedge_value": -15.930513756481059,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -15.930513756481059
+    }
+  },
+  {
+    "timestamp": 1708041600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.6697754290362354e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -13.549984487627494,
+    "post_hedge_value": -13.549984487627327,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -13.549984487627327
+    }
+  },
+  {
+    "timestamp": 1708128000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.304023721284466e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.514068512525846,
+    "post_hedge_value": -10.514068512526176,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.514068512526176
+    }
+  },
+  {
+    "timestamp": 1708214400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 9.769962616701378e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.387491055070885,
+    "post_hedge_value": -11.387491055070983,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.387491055070983
+    }
+  },
+  {
+    "timestamp": 1708300800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 4.1033842990145786e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.202661034063254,
+    "post_hedge_value": -11.202661034062844,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.202661034062844
+    }
+  },
+  {
+    "timestamp": 1708387200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.8118839761882555e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.327735738347442,
+    "post_hedge_value": -10.327735738347624,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.327735738347624
+    }
+  },
+  {
+    "timestamp": 1708473600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 2.1671553440683056e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.395923806946822,
+    "post_hedge_value": -10.395923806947039,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.395923806947039
+    }
+  },
+  {
+    "timestamp": 1708560000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 3.232969447708456e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -11.88681637340471,
+    "post_hedge_value": -11.886816373404386,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -11.886816373404386
+    }
+  },
+  {
+    "timestamp": 1708646400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 7.993605777301127e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -13.990547104736878,
+    "post_hedge_value": -13.990547104736958,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -13.990547104736958
+    }
+  },
+  {
+    "timestamp": 1708732800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.7763568394002505e-15,
+    "target_greek": "delta",
+    "pre_hedge_value": -12.929480086160552,
+    "post_hedge_value": -12.92948008616055,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -12.92948008616055
+    }
+  },
+  {
+    "timestamp": 1708819200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.616484723854228e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -10.957887605256754,
+    "post_hedge_value": -10.957887605256593,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -10.957887605256593
+    }
+  },
+  {
+    "timestamp": 1708905600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 8.704148513061227e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.82549389876683,
+    "post_hedge_value": -9.825493898766917,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.825493898766917
+    }
+  },
+  {
+    "timestamp": 1708992000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 7.993605777301127e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.297264107567617,
+    "post_hedge_value": -9.297264107567537,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.297264107567537
+    }
+  },
+  {
+    "timestamp": 1709078400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.623767952376511e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -8.848824328268641,
+    "post_hedge_value": -8.848824328269004,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -8.848824328269004
+    }
+  },
+  {
+    "timestamp": 1709164800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.3092638912203256e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -9.49775728801215,
+    "post_hedge_value": -9.497757288011918,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -9.497757288011918
+    }
+  },
+  {
+    "timestamp": 1709251200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 5.861977570020827e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -7.699638795466431,
+    "post_hedge_value": -7.699638795466372,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -7.699638795466372
+    }
+  },
+  {
+    "timestamp": 1709337600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.0036416142611415e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -6.849535601082366,
+    "post_hedge_value": -6.849535601082466,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -6.849535601082466
+    }
+  },
+  {
+    "timestamp": 1709424000000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.0658141036401503e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -5.894225586744692,
+    "post_hedge_value": -5.894225586744799,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -5.894225586744799
+    }
+  },
+  {
+    "timestamp": 1709510400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.0302869668521453e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -5.9128500970063165,
+    "post_hedge_value": -5.9128500970062134,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -5.9128500970062134
+    }
+  },
+  {
+    "timestamp": 1709596800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 4.973799150320701e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -7.2398679866705535,
+    "post_hedge_value": -7.239867986670504,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -7.239867986670504
+    }
+  },
+  {
+    "timestamp": 1709683200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 7.904787935331115e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -7.116808087194741,
+    "post_hedge_value": -7.116808087194662,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -7.116808087194662
+    }
+  },
+  {
+    "timestamp": 1709769600000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 3.4653893136943874e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 106672.91393482171,
+    "post_hedge_value": 106672.91393482301,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 106672.91393482301,
+      "option_vega": 3737.3014633785715
+    }
+  },
+  {
+    "timestamp": 1709769600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.934630399271555e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -5.0680546408863805,
+    "post_hedge_value": -5.068054640886774,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -5.068054640886774
+    }
+  },
+  {
+    "timestamp": 1709856000000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 3.4874818254198893e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 102424.22395208846,
+    "post_hedge_value": 102424.22395208721,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 102424.22395208721,
+      "option_vega": 3588.447975607369
+    }
+  },
+  {
+    "timestamp": 1709856000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.7267077484793845e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -4.816419250081552,
+    "post_hedge_value": -4.816419250081279,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -4.816419250081279
+    }
+  },
+  {
+    "timestamp": 1709942400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.3145040611561853e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -4.278328785456349,
+    "post_hedge_value": -4.27832878545648,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -4.27832878545648
+    }
+  },
+  {
+    "timestamp": 1710028800000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 2.485699020779211e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 75193.47509835812,
+    "post_hedge_value": 75193.47509835877,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 75193.47509835877,
+      "option_vega": 2634.4146246283344
+    }
+  },
+  {
+    "timestamp": 1710028800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 2.2648549702353193e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.13428852371122,
+    "post_hedge_value": -3.1342885237114464,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.1342885237114464
+    }
+  },
+  {
+    "timestamp": 1710115200000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 5.789901738859898e-15,
+    "target_greek": "vega",
+    "pre_hedge_value": 71737.29398031428,
+    "post_hedge_value": 71737.2939803143,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 71737.2939803143,
+      "option_vega": 2513.326803233849
+    }
+  },
+  {
+    "timestamp": 1710115200000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.6697754290362354e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.0252992337406006,
+    "post_hedge_value": -3.0252992337404336,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.0252992337404336
+    }
+  },
+  {
+    "timestamp": 1710201600000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 5.263499806862004e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 67864.0890325407,
+    "post_hedge_value": 67864.08903253944,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 67864.08903253944,
+      "option_vega": 2377.628489713288
+    }
+  },
+  {
+    "timestamp": 1710201600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 4.569677969357144e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -2.8755511372073492,
+    "post_hedge_value": -2.8755511372068923,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -2.8755511372068923
+    }
+  },
+  {
+    "timestamp": 1710288000000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 2.4102395966641686e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 72377.77985544737,
+    "post_hedge_value": 72377.77985544676,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 72377.77985544676,
+      "option_vega": 2535.7663214781496
+    }
+  },
+  {
+    "timestamp": 1710288000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.389999226830696e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.018072753573314,
+    "post_hedge_value": -3.018072753573175,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.018072753573175
+    }
+  },
+  {
+    "timestamp": 1710374400000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 5.13074170247336e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 74477.28898940439,
+    "post_hedge_value": 74477.28898940573,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 74477.28898940573,
+      "option_vega": 2609.3229373920167
+    }
+  },
+  {
+    "timestamp": 1710374400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 6.110667527536862e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.0911991410606525,
+    "post_hedge_value": -3.0911991410612636,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.0911991410612636
+    }
+  },
+  {
+    "timestamp": 1710460800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 2.779998453661392e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.500788150532866,
+    "post_hedge_value": -3.500788150532588,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.500788150532588
+    }
+  },
+  {
+    "timestamp": 1710547200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.6431300764452317e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.3629058393865634,
+    "post_hedge_value": -3.3629058393867277,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.3629058393867277
+    }
+  },
+  {
+    "timestamp": 1710633600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.2168044349891716e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.554623587353394,
+    "post_hedge_value": -3.5546235873535155,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.5546235873535155
+    }
+  },
+  {
+    "timestamp": 1710720000000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 2.412196519864776e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 75762.82740000077,
+    "post_hedge_value": 75762.82740000013,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 75762.82740000013,
+      "option_vega": 2654.3619675068385
+    }
+  },
+  {
+    "timestamp": 1710720000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 3.6504133049675147e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.3397640349982893,
+    "post_hedge_value": -3.3397640349979243,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.3397640349979243
+    }
+  },
+  {
+    "timestamp": 1710806400000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 2.4403213024723924e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 76591.69603265292,
+    "post_hedge_value": 76591.69603265358,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 76591.69603265358,
+      "option_vega": 2683.4015037817608
+    }
+  },
+  {
+    "timestamp": 1710806400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.7481129311345285e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -3.435961196847323,
+    "post_hedge_value": -3.435961196847698,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -3.435961196847698
+    }
+  },
+  {
+    "timestamp": 1710892800000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 4.892960856745748e-15,
+    "target_greek": "vega",
+    "pre_hedge_value": 42443.81830534074,
+    "post_hedge_value": 42443.818305340734,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 42443.818305340734,
+      "option_vega": 1487.0255101575822
+    }
+  },
+  {
+    "timestamp": 1710892800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.978417429882029e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -1.6274796693386335,
+    "post_hedge_value": -1.6274796693384357,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -1.6274796693384357
+    }
+  },
+  {
+    "timestamp": 1710979200000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 4.979385136469551e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 37119.35970798076,
+    "post_hedge_value": 37119.359707981406,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 37119.359707981406,
+      "option_vega": 1300.4823083868814
+    }
+  },
+  {
+    "timestamp": 1710979200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 5.253575352526241e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -1.4108342202295887,
+    "post_hedge_value": -1.410834220230114,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -1.410834220230114
+    }
+  },
+  {
+    "timestamp": 1711065600000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 1.192549324123912e-12,
+    "target_greek": "vega",
+    "pre_hedge_value": 26644.113093526634,
+    "post_hedge_value": 26644.11309352552,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 26644.11309352552,
+      "option_vega": 933.4804795498712
+    }
+  },
+  {
+    "timestamp": 1711065600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.265321181165291e-12,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.9351757352347612,
+    "post_hedge_value": -0.9351757352334958,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.9351757352334958
+    }
+  },
+  {
+    "timestamp": 1711152000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 9.992007221626409e-16,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.9170634204666861,
+    "post_hedge_value": -0.9170634204666851,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.9170634204666851
+    }
+  },
+  {
+    "timestamp": 1711238400000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 3.347157657387191e-14,
+    "target_greek": "vega",
+    "pre_hedge_value": 27920.45767674891,
+    "post_hedge_value": 27920.45767674894,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 27920.45767674894,
+      "option_vega": 978.1974025503132
+    }
+  },
+  {
+    "timestamp": 1711238400000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 6.328271240363392e-15,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.9786757086623723,
+    "post_hedge_value": -0.978675708662366,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.978675708662366
+    }
+  },
+  {
+    "timestamp": 1711324800000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 3.5186403308358616e-12,
+    "target_greek": "vega",
+    "pre_hedge_value": 12984.761968125016,
+    "post_hedge_value": 12984.761968126617,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 12984.761968126617,
+      "option_vega": 454.92307386248285
+    }
+  },
+  {
+    "timestamp": 1711324800000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 3.3974489888066728e-12,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.4095673987073063,
+    "post_hedge_value": -0.40956739871070375,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.40956739871070375
+    }
+  },
+  {
+    "timestamp": 1711411200000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 3.5532714448422077e-13,
+    "target_greek": "vega",
+    "pre_hedge_value": 11543.164967417946,
+    "post_hedge_value": 11543.16496741809,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 11543.16496741809,
+      "option_vega": 404.4165077472826
+    }
+  },
+  {
+    "timestamp": 1711411200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 4.667377595524158e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.36918229489517884,
+    "post_hedge_value": -0.3691822948956456,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.3691822948956456
+    }
+  },
+  {
+    "timestamp": 1711497600000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 6.172323041730867e-12,
+    "target_greek": "vega",
+    "pre_hedge_value": 7898.4730637124685,
+    "post_hedge_value": 7898.4730637141765,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 7898.4730637141765,
+      "option_vega": 276.72418283709703
+    }
+  },
+  {
+    "timestamp": 1711497600000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 6.008943342905582e-12,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.2348701253824217,
+    "post_hedge_value": -0.23487012538843063,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.23487012538843063
+    }
+  },
+  {
+    "timestamp": 1711584000000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 1.539258490596809e-11,
+    "target_greek": "vega",
+    "pre_hedge_value": 6159.07385990921,
+    "post_hedge_value": 6159.073859905889,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 6159.073859905889,
+      "option_vega": 215.7840720818058
+    }
+  },
+  {
+    "timestamp": 1711584000000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 1.4989592900249704e-11,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.17712281365140115,
+    "post_hedge_value": -0.17712281363641155,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.17712281363641155
+    }
+  },
+  {
+    "timestamp": 1711670400000000000,
+    "instrument": "vega_option",
+    "side": "buy",
+    "quantity": 1.136562879610156e-11,
+    "target_greek": "vega",
+    "pre_hedge_value": 6927.477816104233,
+    "post_hedge_value": 6927.477816106992,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 6927.477816106992,
+      "option_vega": 242.70521939124592
+    }
+  },
+  {
+    "timestamp": 1711670400000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 1.1399464705519335e-11,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.20823285583418993,
+    "post_hedge_value": -0.2082328558455894,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.2082328558455894
+    }
+  },
+  {
+    "timestamp": 1711756800000000000,
+    "instrument": "vega_option",
+    "side": "sell",
+    "quantity": 5.3515111231154535e-12,
+    "target_greek": "vega",
+    "pre_hedge_value": 4622.880523171569,
+    "post_hedge_value": 4622.880523170702,
+    "rationale": "Neutralise portfolio vega via hedging option",
+    "metrics": {
+      "portfolio_vega": 4622.880523170702,
+      "option_vega": 161.96330921293338
+    }
+  },
+  {
+    "timestamp": 1711756800000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 5.417749582292686e-12,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.1425229149467988,
+    "post_hedge_value": -0.14252291494138106,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.14252291494138106
+    }
+  },
+  {
+    "timestamp": 1711843200000000000,
+    "instrument": "spot",
+    "side": "sell",
+    "quantity": 5.537237335317968e-14,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.09579012578888424,
+    "post_hedge_value": -0.09579012578893961,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.09579012578893961
+    }
+  },
+  {
+    "timestamp": 1711929600000000000,
+    "instrument": "spot",
+    "side": "buy",
+    "quantity": 3.0694891073324015e-13,
+    "target_greek": "delta",
+    "pre_hedge_value": -0.0933100183091149,
+    "post_hedge_value": -0.09331001830880795,
+    "rationale": "Neutralise portfolio delta via spot",
+    "metrics": {
+      "portfolio_delta": -0.09331001830880795
+    }
+  }
+]

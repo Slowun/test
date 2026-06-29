@@ -1,0 +1,13 @@
+{
+  "instrument": "primary",
+  "side": "long",
+  "stop_price": 50248.07118288296,
+  "reference_price": 53804.30538209727,
+  "distance_pct": 0.06609571806492652,
+  "method": "atr+var+heston",
+  "components": {
+    "atr_pct": 0.06609571806492652,
+    "var_pct": 0.029349218868609785,
+    "heston_vol_pct": 0.009001224067952129
+  }
+}

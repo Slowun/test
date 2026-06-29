@@ -1,0 +1,828 @@
+{"ts": "2026-06-18T23:08:40.345525+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-18T23:08:50.025295+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 9.68, "provider": "bundled"}
+{"ts": "2026-06-18T23:08:50.027295+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 12, "n_samples": 41}
+{"ts": "2026-06-18T23:08:50.029295+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 12, "n_samples": 41, "n_option_rows": 783, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-02-11 00:00:00"}
+{"ts": "2026-06-18T23:08:50.029295+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 9.6838}
+{"ts": "2026-06-18T23:08:50.046296+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 9.684, "produces": "data_ready"}
+{"ts": "2026-06-18T23:08:50.046296+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-18T23:08:50.047295+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0011}
+{"ts": "2026-06-18T23:08:50.047295+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01062, "vol_of_vol": 0.00122, "ci": [0.0087, 0.01364], "hedge_ratio": 0.0, "quantity_to_hedge": 0.0}
+{"ts": "2026-06-18T23:08:50.067199+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.0192}
+{"ts": "2026-06-18T23:08:53.124623+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 3.0575, "n": 11}
+{"ts": "2026-06-18T23:08:53.495781+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.3706, "n": 11}
+{"ts": "2026-06-18T23:08:57.031613+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["ETHUSDT", "LINKUSDT", "SOLUSDT", "BNBUSDT", "LTCUSDT"], "top_scores": [1.0, 0.835, 0.464, 0.454, 0.421], "regime": "normal"}
+{"ts": "2026-06-18T23:08:57.032611+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 6.9861}
+{"ts": "2026-06-18T23:08:57.045613+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 6.986, "produces": "analysis_ready"}
+{"ts": "2026-06-18T23:08:57.046614+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-18T23:08:57.503817+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.4579}
+{"ts": "2026-06-18T23:08:57.504816+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.05823, "kappa": 0.0, "theta": 674.19048, "eps": 0.377, "rho": -0.308}
+{"ts": "2026-06-18T23:09:47.148002+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 49.6432, "n": 41}
+{"ts": "2026-06-18T23:09:47.832175+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 41, "n_failed": 3, "stable": false, "max_rel_change": 52.323, "heston_iv_rmse": 0.00014, "bs_iv_rmse": 0.85303, "sabr_iv_rmse": 0.84413}
+{"ts": "2026-06-18T23:09:47.832175+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 50.7862}
+{"ts": "2026-06-18T23:09:47.839177+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 50.786, "produces": "calibration_ready"}
+{"ts": "2026-06-18T23:09:47.840175+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-18T23:09:47.995211+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.1513, "n": 41}
+{"ts": "2026-06-18T23:09:48.029207+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.5272, "gamma": 0.0001, "vega": 4239.5388, "theta": -30.0938, "rho": -2066.1148, "vanna": 0.2114, "volga": 5755.3453, "charm": -0.0023, "premium": 1773.2104}
+{"ts": "2026-06-18T23:09:48.030177+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0023}
+{"ts": "2026-06-18T23:09:48.030177+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.19}
+{"ts": "2026-06-18T23:09:48.045178+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.19, "produces": "greeks_ready"}
+{"ts": "2026-06-18T23:09:48.045178+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-18T23:09:48.338503+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.2937, "n": 41}
+{"ts": "2026-06-18T23:09:48.355511+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 69, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -71.52, "fees": 27.0}
+{"ts": "2026-06-18T23:09:48.355511+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.3107}
+{"ts": "2026-06-18T23:09:48.366473+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.311, "produces": "hedge_decision"}
+{"ts": "2026-06-18T23:09:48.366473+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-18T23:09:48.380471+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_mean_variance", "kind": "timing", "operation": "optimize_mean_variance", "seconds": 0.0129}
+{"ts": "2026-06-18T23:09:48.386502+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_risk_parity", "kind": "timing", "operation": "optimize_risk_parity", "seconds": 0.0057}
+{"ts": "2026-06-18T23:09:48.875467+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_min_variance", "kind": "timing", "operation": "optimize_min_variance", "seconds": 0.4883}
+{"ts": "2026-06-18T23:09:48.949469+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_max_diversification", "kind": "timing", "operation": "optimize_max_diversification", "seconds": 0.0739}
+{"ts": "2026-06-18T23:09:48.952470+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_cvar", "kind": "timing", "operation": "optimize_cvar", "seconds": 0.0031}
+{"ts": "2026-06-18T23:09:48.962477+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "min_variance", "turnover": 0.0, "transaction_cost": 0.0, "triggered": false, "expected_risk": 0.2511}
+{"ts": "2026-06-18T23:09:48.962477+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.596}
+{"ts": "2026-06-18T23:09:48.965467+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.596, "produces": "portfolio_ready"}
+{"ts": "2026-06-18T23:09:48.965467+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-18T23:09:48.976472+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 0.0, "cvar": 0.0, "max_drawdown": -0.0, "within_limits": true, "breached": [], "stop_price": 40743.72, "stop_distance_pct": 0.081}
+{"ts": "2026-06-18T23:09:48.976472+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0106}
+{"ts": "2026-06-18T23:09:48.981473+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.011, "produces": "risk_assessment"}
+{"ts": "2026-06-18T23:09:48.981473+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-18T23:09:49.183677+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.1996, "n_folds": 5}
+{"ts": "2026-06-18T23:09:49.198709+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": 0.0, "sharpe": 0.218, "sortino": 0.224, "calmar": 0.803, "max_drawdown": -0.0, "var": 0.0, "cvar": 0.0, "n_folds": 5}
+{"ts": "2026-06-18T23:09:49.199675+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.2172}
+{"ts": "2026-06-18T23:09:49.206705+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.217, "produces": "backtest_ready"}
+{"ts": "2026-06-18T23:09:49.206705+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-18T23:09:49.209676+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.487, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.059, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-18T23:09:49.209676+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0028}
+{"ts": "2026-06-18T23:09:49.211676+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-18T23:09:49.211676+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-18T23:09:49.213677+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated explanation", "kind": "decision", "sections": 8, "confidence": 0.487}
+{"ts": "2026-06-18T23:09:49.213677+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0015}
+{"ts": "2026-06-18T23:09:49.215706+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.002, "produces": "explanation_ready"}
+{"ts": "2026-06-18T23:09:49.215706+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-18T23:09:51.176930+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "path": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard.html", "panels": 7}
+{"ts": "2026-06-18T23:09:51.176930+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.9615}
+{"ts": "2026-06-18T23:09:51.177927+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.962, "produces": "dashboard_ready"}
+{"ts": "2026-06-18T23:09:51.178927+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 70.75}
+{"ts": "2026-06-18T23:12:40.724406+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-18T23:12:40.803406+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0794, "provider": "bundled"}
+{"ts": "2026-06-18T23:12:40.805406+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 12, "n_samples": 41}
+{"ts": "2026-06-18T23:12:40.806407+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 12, "n_samples": 41, "n_option_rows": 783, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-02-11 00:00:00"}
+{"ts": "2026-06-18T23:12:40.806407+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.0823}
+{"ts": "2026-06-18T23:12:40.823406+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.082, "produces": "data_ready"}
+{"ts": "2026-06-18T23:12:40.823406+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-18T23:12:40.824406+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0011}
+{"ts": "2026-06-18T23:12:40.825406+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01062, "vol_of_vol": 0.00122, "ci": [0.0087, 0.01364], "hedge_ratio": 0.1085, "quantity_to_hedge": 24.4629}
+{"ts": "2026-06-18T23:12:40.843406+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.0179}
+{"ts": "2026-06-18T23:12:43.818406+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 2.9742, "n": 11}
+{"ts": "2026-06-18T23:12:43.909406+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.091, "n": 11}
+{"ts": "2026-06-18T23:12:45.777249+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["ETHUSDT", "LINKUSDT", "SOLUSDT", "BNBUSDT", "LTCUSDT"], "top_scores": [1.0, 0.835, 0.464, 0.454, 0.421], "regime": "normal"}
+{"ts": "2026-06-18T23:12:45.777249+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 4.9535}
+{"ts": "2026-06-18T23:12:45.787242+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 4.954, "produces": "analysis_ready"}
+{"ts": "2026-06-18T23:12:45.787242+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-18T23:12:46.237280+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.4497}
+{"ts": "2026-06-18T23:12:46.237280+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.05823, "kappa": 0.0, "theta": 674.19048, "eps": 0.377, "rho": -0.308}
+{"ts": "2026-06-18T23:13:40.160111+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 53.9226, "n": 41}
+{"ts": "2026-06-18T23:13:41.833079+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 41, "n_failed": 3, "stable": false, "max_rel_change": 52.323, "heston_iv_rmse": 0.00014, "bs_iv_rmse": 0.85303, "sabr_iv_rmse": 0.84413}
+{"ts": "2026-06-18T23:13:41.834097+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 56.0464}
+{"ts": "2026-06-18T23:13:41.840093+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 56.047, "produces": "calibration_ready"}
+{"ts": "2026-06-18T23:13:41.840093+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-18T23:13:41.985114+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.1428, "n": 41}
+{"ts": "2026-06-18T23:13:42.019078+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -12.8969, "gamma": 0.0029, "vega": 103711.2042, "theta": -736.179, "rho": -50543.0573, "vanna": 5.1705, "volga": 140792.1522, "charm": -0.0562, "premium": 43377.7809}
+{"ts": "2026-06-18T23:13:42.019078+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "amber", "delta_fraction": 0.0572}
+{"ts": "2026-06-18T23:13:42.019078+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.1793}
+{"ts": "2026-06-18T23:13:42.029118+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.179, "produces": "greeks_ready"}
+{"ts": "2026-06-18T23:13:42.029118+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-18T23:13:42.301111+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.2723, "n": 41}
+{"ts": "2026-06-18T23:13:42.312100+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 70, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -1678.16, "fees": 589.07}
+{"ts": "2026-06-18T23:13:42.312100+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.2831}
+{"ts": "2026-06-18T23:13:42.321080+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.283, "produces": "hedge_decision"}
+{"ts": "2026-06-18T23:13:42.321080+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-18T23:13:42.335111+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_mean_variance", "kind": "timing", "operation": "optimize_mean_variance", "seconds": 0.0124}
+{"ts": "2026-06-18T23:13:42.341114+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_risk_parity", "kind": "timing", "operation": "optimize_risk_parity", "seconds": 0.0053}
+{"ts": "2026-06-18T23:13:42.828110+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_min_variance", "kind": "timing", "operation": "optimize_min_variance", "seconds": 0.4872}
+{"ts": "2026-06-18T23:13:42.897113+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_max_diversification", "kind": "timing", "operation": "optimize_max_diversification", "seconds": 0.0685}
+{"ts": "2026-06-18T23:13:42.899079+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_cvar", "kind": "timing", "operation": "optimize_cvar", "seconds": 0.0019}
+{"ts": "2026-06-18T23:13:42.904080+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "min_variance", "turnover": 0.0, "transaction_cost": 0.0, "triggered": false, "expected_risk": 0.2511}
+{"ts": "2026-06-18T23:13:42.904080+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.5823}
+{"ts": "2026-06-18T23:13:42.907079+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.583, "produces": "portfolio_ready"}
+{"ts": "2026-06-18T23:13:42.907079+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-18T23:13:42.914102+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 4e-05, "cvar": 0.00011, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 40743.72, "stop_distance_pct": 0.081}
+{"ts": "2026-06-18T23:13:42.914102+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0072}
+{"ts": "2026-06-18T23:13:42.918114+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.007, "produces": "risk_assessment"}
+{"ts": "2026-06-18T23:13:42.918114+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-18T23:13:43.141081+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.2209, "n_folds": 5}
+{"ts": "2026-06-18T23:13:43.152118+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": 0.0, "sharpe": 0.218, "sortino": 0.224, "calmar": 0.801, "max_drawdown": -0.0003, "var": 4e-05, "cvar": 0.00011, "n_folds": 5}
+{"ts": "2026-06-18T23:13:43.152118+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.2339}
+{"ts": "2026-06-18T23:13:43.159118+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.234, "produces": "backtest_ready"}
+{"ts": "2026-06-18T23:13:43.159118+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-18T23:13:43.162085+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.487, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.059, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-18T23:13:43.162085+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0026}
+{"ts": "2026-06-18T23:13:43.163101+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-18T23:13:43.163101+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-18T23:13:43.165081+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated explanation", "kind": "decision", "sections": 8, "confidence": 0.487}
+{"ts": "2026-06-18T23:13:43.165081+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0018}
+{"ts": "2026-06-18T23:13:43.167084+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.002, "produces": "explanation_ready"}
+{"ts": "2026-06-18T23:13:43.167084+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-18T23:13:44.317135+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "path": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard.html", "panels": 7}
+{"ts": "2026-06-18T23:13:44.317135+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.1496}
+{"ts": "2026-06-18T23:13:44.318079+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.15, "produces": "dashboard_ready"}
+{"ts": "2026-06-18T23:13:44.318079+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 63.52}
+{"ts": "2026-06-18T23:15:56.192828+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-18T23:15:56.237826+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0446, "provider": "bundled"}
+{"ts": "2026-06-18T23:15:56.238845+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 12, "n_samples": 41}
+{"ts": "2026-06-18T23:15:56.239829+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 12, "n_samples": 41, "n_option_rows": 783, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-02-11 00:00:00"}
+{"ts": "2026-06-18T23:15:56.239829+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.0472}
+{"ts": "2026-06-18T23:15:56.255804+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.047, "produces": "data_ready"}
+{"ts": "2026-06-18T23:15:56.255804+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-18T23:15:56.256804+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0012}
+{"ts": "2026-06-18T23:15:56.257804+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01062, "vol_of_vol": 0.00122, "ci": [0.0087, 0.01364], "hedge_ratio": 0.1085, "quantity_to_hedge": 24.4629}
+{"ts": "2026-06-18T23:15:56.274837+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.0175}
+{"ts": "2026-06-18T23:15:59.230835+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 2.9557, "n": 11}
+{"ts": "2026-06-18T23:15:59.324840+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.0937, "n": 11}
+{"ts": "2026-06-18T23:16:01.245892+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["ETHUSDT", "LINKUSDT", "SOLUSDT", "BNBUSDT", "LTCUSDT"], "top_scores": [1.0, 0.835, 0.464, 0.454, 0.421], "regime": "normal"}
+{"ts": "2026-06-18T23:16:01.245892+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 4.9902}
+{"ts": "2026-06-18T23:16:01.259882+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 4.99, "produces": "analysis_ready"}
+{"ts": "2026-06-18T23:16:01.259882+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-18T23:16:01.745915+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.4855}
+{"ts": "2026-06-18T23:16:01.745915+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.05823, "kappa": 0.0, "theta": 674.19048, "eps": 0.377, "rho": -0.308}
+{"ts": "2026-06-18T23:16:56.534879+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 54.7883, "n": 41}
+{"ts": "2026-06-18T23:16:58.217886+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 41, "n_failed": 3, "stable": false, "max_rel_change": 52.323, "heston_iv_rmse": 0.00014, "bs_iv_rmse": 0.85303, "sabr_iv_rmse": 0.84413}
+{"ts": "2026-06-18T23:16:58.217886+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 56.9573}
+{"ts": "2026-06-18T23:16:58.223886+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 56.957, "produces": "calibration_ready"}
+{"ts": "2026-06-18T23:16:58.223886+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-18T23:16:58.403884+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.1772, "n": 41}
+{"ts": "2026-06-18T23:16:58.446884+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -12.8969, "gamma": 0.0029, "vega": 103711.2042, "theta": -736.179, "rho": -50543.0573, "vanna": 5.1705, "volga": 140792.1522, "charm": -0.0562, "premium": 43377.7809}
+{"ts": "2026-06-18T23:16:58.446884+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "amber", "delta_fraction": 0.0572}
+{"ts": "2026-06-18T23:16:58.447885+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.2235}
+{"ts": "2026-06-18T23:16:58.457885+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.224, "produces": "greeks_ready"}
+{"ts": "2026-06-18T23:16:58.457885+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-18T23:16:58.791885+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.3339, "n": 41}
+{"ts": "2026-06-18T23:16:58.802883+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 70, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -1678.16, "fees": 589.07}
+{"ts": "2026-06-18T23:16:58.802883+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.3451}
+{"ts": "2026-06-18T23:16:58.812899+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.345, "produces": "hedge_decision"}
+{"ts": "2026-06-18T23:16:58.812899+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-18T23:16:58.828885+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_mean_variance", "kind": "timing", "operation": "optimize_mean_variance", "seconds": 0.0137}
+{"ts": "2026-06-18T23:16:58.834884+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_risk_parity", "kind": "timing", "operation": "optimize_risk_parity", "seconds": 0.0059}
+{"ts": "2026-06-18T23:16:59.402881+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_min_variance", "kind": "timing", "operation": "optimize_min_variance", "seconds": 0.5683}
+{"ts": "2026-06-18T23:16:59.469920+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_max_diversification", "kind": "timing", "operation": "optimize_max_diversification", "seconds": 0.0666}
+{"ts": "2026-06-18T23:16:59.471881+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_cvar", "kind": "timing", "operation": "optimize_cvar", "seconds": 0.0019}
+{"ts": "2026-06-18T23:16:59.474880+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "min_variance", "turnover": 0.0, "transaction_cost": 0.0, "triggered": false, "expected_risk": 0.2511}
+{"ts": "2026-06-18T23:16:59.475882+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.6622}
+{"ts": "2026-06-18T23:16:59.477881+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.662, "produces": "portfolio_ready"}
+{"ts": "2026-06-18T23:16:59.477881+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-18T23:16:59.484885+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 4e-05, "cvar": 0.00011, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 40743.72, "stop_distance_pct": 0.081}
+{"ts": "2026-06-18T23:16:59.484885+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.007}
+{"ts": "2026-06-18T23:16:59.488884+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.007, "produces": "risk_assessment"}
+{"ts": "2026-06-18T23:16:59.488884+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-18T23:16:59.714885+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.2233, "n_folds": 5}
+{"ts": "2026-06-18T23:16:59.725888+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": 0.0, "sharpe": 0.218, "sortino": 0.224, "calmar": 0.801, "max_drawdown": -0.0003, "var": 4e-05, "cvar": 0.00011, "n_folds": 5}
+{"ts": "2026-06-18T23:16:59.725888+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.2369}
+{"ts": "2026-06-18T23:16:59.732886+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.237, "produces": "backtest_ready"}
+{"ts": "2026-06-18T23:16:59.732886+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-18T23:16:59.735885+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.487, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.059, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-18T23:16:59.735885+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0026}
+{"ts": "2026-06-18T23:16:59.737885+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-18T23:16:59.737885+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-18T23:16:59.739885+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated explanation", "kind": "decision", "sections": 8, "confidence": 0.487}
+{"ts": "2026-06-18T23:16:59.739885+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0016}
+{"ts": "2026-06-18T23:16:59.741920+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.002, "produces": "explanation_ready"}
+{"ts": "2026-06-18T23:16:59.741920+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-18T23:17:00.890885+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "path": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard.html", "panels": 7}
+{"ts": "2026-06-18T23:17:00.890885+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.1486}
+{"ts": "2026-06-18T23:17:00.891900+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.149, "produces": "dashboard_ready"}
+{"ts": "2026-06-18T23:17:00.892899+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 64.62}
+{"ts": "2026-06-18T23:34:48.097375+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-18T23:34:48.149376+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0515, "provider": "bundled"}
+{"ts": "2026-06-18T23:34:48.151377+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 100, "n_samples": 91}
+{"ts": "2026-06-18T23:34:48.153376+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 100, "n_samples": 91, "n_option_rows": 1968, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-04-01 00:00:00"}
+{"ts": "2026-06-18T23:34:48.154376+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.0559}
+{"ts": "2026-06-18T23:34:48.294376+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.056, "produces": "data_ready"}
+{"ts": "2026-06-18T23:34:48.294376+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-18T23:34:48.296411+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0019}
+{"ts": "2026-06-18T23:34:48.297376+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01226, "vol_of_vol": 0.00305, "ci": [0.01069, 0.01437], "hedge_ratio": 0.1536, "quantity_to_hedge": 28.5428}
+{"ts": "2026-06-18T23:34:48.443405+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.1452}
+{"ts": "2026-06-18T23:35:03.251406+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 14.8071, "n": 30}
+{"ts": "2026-06-18T23:35:03.473403+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.2208, "n": 30}
+{"ts": "2026-06-18T23:35:05.417186+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["SYN023USDT", "SYN045USDT", "SYN005USDT", "ATOMUSDT", "APTUSDT", "ETHUSDT", "SYN012USDT", "SYN044USDT", "LTCUSDT", "SYN048USDT"], "top_scores": [0.823, 0.819, 0.817, 0.814, 0.806, 0.753, 0.696, 0.664, 0.613, 0.593], "regime": "calm"}
+{"ts": "2026-06-18T23:35:05.419189+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 17.1235}
+{"ts": "2026-06-18T23:35:05.430189+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 17.124, "produces": "analysis_ready"}
+{"ts": "2026-06-18T23:35:05.431187+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-18T23:35:05.474189+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.0429}
+{"ts": "2026-06-18T23:35:05.475189+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.0461, "kappa": 9.271, "theta": 0.05535, "eps": 0.438, "rho": -0.075}
+{"ts": "2026-06-18T23:36:01.925453+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 56.4492, "n": 91}
+{"ts": "2026-06-18T23:36:03.577456+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 91, "n_failed": 0, "stable": false, "max_rel_change": 180.382, "heston_iv_rmse": 0.00023, "bs_iv_rmse": 0.75212, "sabr_iv_rmse": 0.76371}
+{"ts": "2026-06-18T23:36:03.578456+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 58.1471}
+{"ts": "2026-06-18T23:36:03.586456+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 58.148, "produces": "calibration_ready"}
+{"ts": "2026-06-18T23:36:03.587455+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-18T23:36:03.915486+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.3248, "n": 91}
+{"ts": "2026-06-18T23:36:03.952492+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.0933, "gamma": 0.0001, "vega": 3121.765, "theta": -26.9778, "rho": -417.9033, "vanna": -1.6456, "volga": 59791.4037, "charm": 0.0138, "premium": 151.755}
+{"ts": "2026-06-18T23:36:03.953453+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0005}
+{"ts": "2026-06-18T23:36:03.953453+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.3659}
+{"ts": "2026-06-18T23:36:03.963456+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.367, "produces": "greeks_ready"}
+{"ts": "2026-06-18T23:36:03.963456+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-18T23:36:04.573466+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.6084, "n": 91}
+{"ts": "2026-06-18T23:36:04.589452+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 111, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -5747.75, "fees": 760.91}
+{"ts": "2026-06-18T23:36:04.590451+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.6258}
+{"ts": "2026-06-18T23:36:04.605483+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.627, "produces": "hedge_decision"}
+{"ts": "2026-06-18T23:36:04.605483+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-18T23:36:05.043489+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_mean_variance", "kind": "timing", "operation": "optimize_mean_variance", "seconds": 0.4349}
+{"ts": "2026-06-18T23:36:05.055481+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_risk_parity", "kind": "timing", "operation": "optimize_risk_parity", "seconds": 0.011}
+{"ts": "2026-06-18T23:36:05.164485+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_min_variance", "kind": "timing", "operation": "optimize_min_variance", "seconds": 0.1077}
+{"ts": "2026-06-18T23:36:05.241455+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_max_diversification", "kind": "timing", "operation": "optimize_max_diversification", "seconds": 0.0764}
+{"ts": "2026-06-18T23:36:05.245450+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_cvar", "kind": "timing", "operation": "optimize_cvar", "seconds": 0.0029}
+{"ts": "2026-06-18T23:36:05.249450+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "min_variance", "turnover": 0.5, "transaction_cost": 1500.0, "triggered": true, "expected_risk": 0.2579}
+{"ts": "2026-06-18T23:36:05.249450+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.643}
+{"ts": "2026-06-18T23:36:05.253457+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.644, "produces": "portfolio_ready"}
+{"ts": "2026-06-18T23:36:05.254488+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-18T23:36:05.265456+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-18T23:36:05.265456+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0113}
+{"ts": "2026-06-18T23:36:05.270451+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.012, "produces": "risk_assessment"}
+{"ts": "2026-06-18T23:36:05.271456+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-18T23:36:05.724457+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.4501, "n_folds": 12}
+{"ts": "2026-06-18T23:36:05.738456+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-18T23:36:05.738456+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.4671}
+{"ts": "2026-06-18T23:36:05.748462+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.468, "produces": "backtest_ready"}
+{"ts": "2026-06-18T23:36:05.750465+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-18T23:36:05.753455+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-18T23:36:05.754454+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0038}
+{"ts": "2026-06-18T23:36:05.757457+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.004, "produces": "diagnostic_ready"}
+{"ts": "2026-06-18T23:36:05.758454+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-18T23:36:05.760453+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-18T23:36:05.761469+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0029}
+{"ts": "2026-06-18T23:36:05.765460+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.004, "produces": "explanation_ready"}
+{"ts": "2026-06-18T23:36:05.766450+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-18T23:36:06.440486+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "path": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard.html", "panels": 7}
+{"ts": "2026-06-18T23:36:06.441483+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 0.6742}
+{"ts": "2026-06-18T23:36:06.443453+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 0.675, "produces": "dashboard_ready"}
+{"ts": "2026-06-18T23:36:06.443453+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 78.13}
+{"ts": "2026-06-18T23:38:03.122576+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-18T23:38:03.173575+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0493, "provider": "bundled"}
+{"ts": "2026-06-18T23:38:03.174575+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 100, "n_samples": 91}
+{"ts": "2026-06-18T23:38:03.176575+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 100, "n_samples": 91, "n_option_rows": 1968, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-04-01 00:00:00"}
+{"ts": "2026-06-18T23:38:03.177575+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.054}
+{"ts": "2026-06-18T23:38:03.315576+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.055, "produces": "data_ready"}
+{"ts": "2026-06-18T23:38:03.316576+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-18T23:38:03.319576+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0019}
+{"ts": "2026-06-18T23:38:03.320577+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01226, "vol_of_vol": 0.00305, "ci": [0.01069, 0.01437], "hedge_ratio": 0.1536, "quantity_to_hedge": 28.5428}
+{"ts": "2026-06-18T23:38:03.471576+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.1508}
+{"ts": "2026-06-18T23:38:16.927576+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 13.4545, "n": 30}
+{"ts": "2026-06-18T23:38:17.146576+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.2183, "n": 30}
+{"ts": "2026-06-18T23:38:19.050960+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["SYN023USDT", "SYN045USDT", "SYN005USDT", "ATOMUSDT", "APTUSDT", "ETHUSDT", "SYN012USDT", "SYN044USDT", "LTCUSDT", "SYN048USDT"], "top_scores": [0.823, 0.819, 0.817, 0.814, 0.806, 0.753, 0.696, 0.664, 0.613, 0.593], "regime": "calm"}
+{"ts": "2026-06-18T23:38:19.052961+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 15.7349}
+{"ts": "2026-06-18T23:38:19.063959+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 15.736, "produces": "analysis_ready"}
+{"ts": "2026-06-18T23:38:19.063959+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-18T23:38:19.109959+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.0445}
+{"ts": "2026-06-18T23:38:19.110959+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.0461, "kappa": 9.271, "theta": 0.05535, "eps": 0.438, "rho": -0.075}
+{"ts": "2026-06-18T23:39:16.164180+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 57.0519, "n": 91}
+{"ts": "2026-06-18T23:39:17.838171+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 91, "n_failed": 0, "stable": false, "max_rel_change": 180.382, "heston_iv_rmse": 0.00023, "bs_iv_rmse": 0.75212, "sabr_iv_rmse": 0.76371}
+{"ts": "2026-06-18T23:39:17.839173+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 58.7737}
+{"ts": "2026-06-18T23:39:17.847170+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 58.774, "produces": "calibration_ready"}
+{"ts": "2026-06-18T23:39:17.848143+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-18T23:39:18.170568+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.3183, "n": 91}
+{"ts": "2026-06-18T23:39:18.206568+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.0933, "gamma": 0.0001, "vega": 3121.765, "theta": -26.9778, "rho": -417.9033, "vanna": -1.6456, "volga": 59791.4037, "charm": 0.0138, "premium": 151.755}
+{"ts": "2026-06-18T23:39:18.207536+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0005}
+{"ts": "2026-06-18T23:39:18.207536+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.359}
+{"ts": "2026-06-18T23:39:18.218539+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.359, "produces": "greeks_ready"}
+{"ts": "2026-06-18T23:39:18.219538+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-18T23:39:18.846539+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.6269, "n": 91}
+{"ts": "2026-06-18T23:39:18.861537+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 111, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -5747.75, "fees": 760.91}
+{"ts": "2026-06-18T23:39:18.862540+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.6422}
+{"ts": "2026-06-18T23:39:18.876540+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.643, "produces": "hedge_decision"}
+{"ts": "2026-06-18T23:39:18.876540+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-18T23:39:19.339573+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_mean_variance", "kind": "timing", "operation": "optimize_mean_variance", "seconds": 0.4597}
+{"ts": "2026-06-18T23:39:19.350571+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_risk_parity", "kind": "timing", "operation": "optimize_risk_parity", "seconds": 0.0109}
+{"ts": "2026-06-18T23:39:19.478571+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_min_variance", "kind": "timing", "operation": "optimize_min_variance", "seconds": 0.1273}
+{"ts": "2026-06-18T23:39:19.562569+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_max_diversification", "kind": "timing", "operation": "optimize_max_diversification", "seconds": 0.0829}
+{"ts": "2026-06-18T23:39:19.566537+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_cvar", "kind": "timing", "operation": "optimize_cvar", "seconds": 0.0027}
+{"ts": "2026-06-18T23:39:19.572570+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "min_variance", "turnover": 0.5, "transaction_cost": 1500.0, "triggered": true, "expected_risk": 0.2579}
+{"ts": "2026-06-18T23:39:19.573537+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.696}
+{"ts": "2026-06-18T23:39:19.576535+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.696, "produces": "portfolio_ready"}
+{"ts": "2026-06-18T23:39:19.576535+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-18T23:39:19.588539+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-18T23:39:19.588539+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0115}
+{"ts": "2026-06-18T23:39:19.593536+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.012, "produces": "risk_assessment"}
+{"ts": "2026-06-18T23:39:19.594533+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-18T23:39:20.054566+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.4578, "n_folds": 12}
+{"ts": "2026-06-18T23:39:20.066545+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-18T23:39:20.067572+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.4721}
+{"ts": "2026-06-18T23:39:20.074535+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.473, "produces": "backtest_ready"}
+{"ts": "2026-06-18T23:39:20.075533+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-18T23:39:20.078573+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-18T23:39:20.079536+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0035}
+{"ts": "2026-06-18T23:39:20.081535+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.004, "produces": "diagnostic_ready"}
+{"ts": "2026-06-18T23:39:20.082533+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-18T23:39:20.085570+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-18T23:39:20.085570+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0022}
+{"ts": "2026-06-18T23:39:20.088538+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.003, "produces": "explanation_ready"}
+{"ts": "2026-06-18T23:39:20.088538+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-18T23:39:20.715537+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "path": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard.html", "panels": 7}
+{"ts": "2026-06-18T23:39:20.715537+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 0.626}
+{"ts": "2026-06-18T23:39:20.717559+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 0.627, "produces": "dashboard_ready"}
+{"ts": "2026-06-18T23:39:20.718571+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 77.38}
+{"ts": "2026-06-18T23:42:12.354505+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-18T23:42:12.404542+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0492, "provider": "bundled"}
+{"ts": "2026-06-18T23:42:12.405532+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 100, "n_samples": 91}
+{"ts": "2026-06-18T23:42:12.406541+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 100, "n_samples": 91, "n_option_rows": 1968, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-04-01 00:00:00"}
+{"ts": "2026-06-18T23:42:12.406541+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.052}
+{"ts": "2026-06-18T23:42:12.455510+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.052, "produces": "data_ready"}
+{"ts": "2026-06-18T23:42:12.455510+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-18T23:42:12.457540+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0018}
+{"ts": "2026-06-18T23:42:12.457540+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01226, "vol_of_vol": 0.00305, "ci": [0.01069, 0.01437], "hedge_ratio": 0.1536, "quantity_to_hedge": 28.5428}
+{"ts": "2026-06-18T23:42:12.601541+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.1433}
+{"ts": "2026-06-18T23:42:26.549541+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 13.948, "n": 30}
+{"ts": "2026-06-18T23:42:26.768541+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.2188, "n": 30}
+{"ts": "2026-06-18T23:42:28.649706+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["SYN023USDT", "SYN045USDT", "SYN005USDT", "ATOMUSDT", "APTUSDT", "ETHUSDT", "SYN012USDT", "SYN044USDT", "LTCUSDT", "SYN048USDT"], "top_scores": [0.823, 0.819, 0.817, 0.814, 0.806, 0.753, 0.696, 0.664, 0.613, 0.593], "regime": "calm"}
+{"ts": "2026-06-18T23:42:28.650690+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 16.1944}
+{"ts": "2026-06-18T23:42:28.658692+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 16.195, "produces": "analysis_ready"}
+{"ts": "2026-06-18T23:42:28.659689+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-18T23:42:28.707688+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.0479}
+{"ts": "2026-06-18T23:42:28.707688+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.0461, "kappa": 9.271, "theta": 0.05535, "eps": 0.438, "rho": -0.075}
+{"ts": "2026-06-18T23:43:26.462547+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 57.7545, "n": 91}
+{"ts": "2026-06-18T23:43:28.115516+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 91, "n_failed": 0, "stable": false, "max_rel_change": 180.382, "heston_iv_rmse": 0.00023, "bs_iv_rmse": 0.75212, "sabr_iv_rmse": 0.76371}
+{"ts": "2026-06-18T23:43:28.115516+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 59.4559}
+{"ts": "2026-06-18T23:43:28.122516+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 59.456, "produces": "calibration_ready"}
+{"ts": "2026-06-18T23:43:28.122516+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-18T23:43:28.493515+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.3682, "n": 91}
+{"ts": "2026-06-18T23:43:28.537515+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.0933, "gamma": 0.0001, "vega": 3121.765, "theta": -26.9778, "rho": -417.9033, "vanna": -1.6456, "volga": 59791.4037, "charm": 0.0138, "premium": 151.755}
+{"ts": "2026-06-18T23:43:28.537515+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0005}
+{"ts": "2026-06-18T23:43:28.537515+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.4148}
+{"ts": "2026-06-18T23:43:28.548537+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.415, "produces": "greeks_ready"}
+{"ts": "2026-06-18T23:43:28.548537+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-18T23:43:29.454511+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.9057, "n": 91}
+{"ts": "2026-06-18T23:43:29.467511+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 111, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -5747.75, "fees": 760.91}
+{"ts": "2026-06-18T23:43:29.467511+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.919}
+{"ts": "2026-06-18T23:43:29.478514+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.919, "produces": "hedge_decision"}
+{"ts": "2026-06-18T23:43:29.478514+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-18T23:43:29.971515+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_mean_variance", "kind": "timing", "operation": "optimize_mean_variance", "seconds": 0.4909}
+{"ts": "2026-06-18T23:43:29.982515+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_risk_parity", "kind": "timing", "operation": "optimize_risk_parity", "seconds": 0.0106}
+{"ts": "2026-06-18T23:43:30.109515+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_min_variance", "kind": "timing", "operation": "optimize_min_variance", "seconds": 0.1272}
+{"ts": "2026-06-18T23:43:30.200747+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_max_diversification", "kind": "timing", "operation": "optimize_max_diversification", "seconds": 0.091}
+{"ts": "2026-06-18T23:43:30.203747+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: optimize_cvar", "kind": "timing", "operation": "optimize_cvar", "seconds": 0.0027}
+{"ts": "2026-06-18T23:43:30.206748+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "min_variance", "turnover": 0.5, "transaction_cost": 1500.0, "triggered": true, "expected_risk": 0.2579}
+{"ts": "2026-06-18T23:43:30.207748+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.7284}
+{"ts": "2026-06-18T23:43:30.209765+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.729, "produces": "portfolio_ready"}
+{"ts": "2026-06-18T23:43:30.209765+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-18T23:43:30.221750+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-18T23:43:30.221750+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0117}
+{"ts": "2026-06-18T23:43:30.225746+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.012, "produces": "risk_assessment"}
+{"ts": "2026-06-18T23:43:30.226755+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-18T23:43:30.676779+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.4485, "n_folds": 12}
+{"ts": "2026-06-18T23:43:30.687750+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-18T23:43:30.687750+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.4615}
+{"ts": "2026-06-18T23:43:30.694748+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.462, "produces": "backtest_ready"}
+{"ts": "2026-06-18T23:43:30.695762+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-18T23:43:30.697747+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-18T23:43:30.697747+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0026}
+{"ts": "2026-06-18T23:43:30.699747+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-18T23:43:30.699747+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-18T23:43:30.701749+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-18T23:43:30.701749+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0015}
+{"ts": "2026-06-18T23:43:30.703748+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.002, "produces": "explanation_ready"}
+{"ts": "2026-06-18T23:43:30.703748+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-18T23:43:31.700345+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "path": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard.html", "panels": 7}
+{"ts": "2026-06-18T23:43:31.700345+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 0.9966}
+{"ts": "2026-06-18T23:43:31.701347+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 0.997, "produces": "dashboard_ready"}
+{"ts": "2026-06-18T23:43:31.701347+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 79.24}
+{"ts": "2026-06-18T23:43:51.095055+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-18T23:43:51.150053+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-18T23:43:51.194053+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-18T23:43:51.253053+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-18T23:43:51.292053+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-18T23:43:51.316053+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-18T23:43:51.350052+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-18T23:43:51.390053+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-18T23:43:51.405053+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-18T23:43:51.493053+00:00", "level": "INFO", "agent": "explainability", "event": "restored from checkpoint", "stage": "explainability"}
+{"ts": "2026-06-18T23:43:51.494053+00:00", "level": "INFO", "agent": "dashboard", "event": "restored from checkpoint", "stage": "dashboard"}
+{"ts": "2026-06-18T23:43:51.494053+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 0.0}
+{"ts": "2026-06-20T11:17:39.084216+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T11:17:39.093929+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T11:17:39.103931+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T11:17:39.103931+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T11:17:39.113929+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T11:17:39.113929+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-20T11:17:39.113929+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-20T11:17:39.123928+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-20T11:17:39.123928+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-20T11:17:39.123928+00:00", "level": "INFO", "agent": "explainability", "event": "restored from checkpoint", "stage": "explainability"}
+{"ts": "2026-06-20T11:17:39.123928+00:00", "level": "INFO", "agent": "dashboard", "event": "restored from checkpoint", "stage": "dashboard"}
+{"ts": "2026-06-20T11:17:39.123928+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 0.0}
+{"ts": "2026-06-20T12:18:57.071675+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-20T12:18:57.869381+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.7974, "provider": "bundled"}
+{"ts": "2026-06-20T12:18:57.871386+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 100, "n_samples": 91}
+{"ts": "2026-06-20T12:18:57.877381+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 100, "n_samples": 91, "n_option_rows": 1968, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-04-01 00:00:00"}
+{"ts": "2026-06-20T12:18:57.877381+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.8056}
+{"ts": "2026-06-20T12:18:57.949379+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.806, "produces": "data_ready"}
+{"ts": "2026-06-20T12:18:57.949379+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-20T12:18:57.954381+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0047}
+{"ts": "2026-06-20T12:18:57.955398+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01226, "vol_of_vol": 0.00305, "ci": [0.01069, 0.01437], "hedge_ratio": 0.1536, "quantity_to_hedge": 28.5428}
+{"ts": "2026-06-20T12:18:58.155381+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.1995}
+{"ts": "2026-06-20T12:19:13.103416+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 14.9472, "n": 30}
+{"ts": "2026-06-20T12:19:13.647460+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.5445, "n": 30}
+{"ts": "2026-06-20T12:19:18.215784+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["SYN023USDT", "SYN045USDT", "SYN005USDT", "ATOMUSDT", "APTUSDT", "ETHUSDT", "SYN012USDT", "SYN044USDT", "LTCUSDT", "SYN048USDT"], "top_scores": [0.823, 0.819, 0.817, 0.814, 0.806, 0.753, 0.696, 0.664, 0.613, 0.593], "regime": "calm"}
+{"ts": "2026-06-20T12:19:18.215784+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 20.2658}
+{"ts": "2026-06-20T12:19:18.234787+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 20.266, "produces": "analysis_ready"}
+{"ts": "2026-06-20T12:19:18.234787+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-20T12:19:18.306982+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.0721}
+{"ts": "2026-06-20T12:19:18.307979+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.0461, "kappa": 9.271, "theta": 0.05535, "eps": 0.438, "rho": -0.075}
+{"ts": "2026-06-20T12:20:19.597517+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 61.2893, "n": 91}
+{"ts": "2026-06-20T12:20:21.417773+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 91, "n_failed": 0, "stable": false, "max_rel_change": 180.382, "heston_iv_rmse": 0.00023, "bs_iv_rmse": 0.75212, "sabr_iv_rmse": 0.76371}
+{"ts": "2026-06-20T12:20:21.418812+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 63.1835}
+{"ts": "2026-06-20T12:20:21.426771+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 63.184, "produces": "calibration_ready"}
+{"ts": "2026-06-20T12:20:21.426771+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-20T12:20:21.778807+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.3483, "n": 91}
+{"ts": "2026-06-20T12:20:21.817803+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.0933, "gamma": 0.0001, "vega": 3121.765, "theta": -26.9778, "rho": -417.9033, "vanna": -1.6456, "volga": 59791.4037, "charm": 0.0138, "premium": 151.755}
+{"ts": "2026-06-20T12:20:21.817803+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0005}
+{"ts": "2026-06-20T12:20:21.817803+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.3913}
+{"ts": "2026-06-20T12:20:21.827771+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.391, "produces": "greeks_ready"}
+{"ts": "2026-06-20T12:20:21.827771+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-20T12:20:22.568956+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.7406, "n": 91}
+{"ts": "2026-06-20T12:20:22.597961+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 111, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -5747.75, "fees": 760.91}
+{"ts": "2026-06-20T12:20:22.597961+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.7701}
+{"ts": "2026-06-20T12:20:22.609957+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.77, "produces": "hedge_decision"}
+{"ts": "2026-06-20T12:20:22.610956+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-20T12:20:22.614954+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected investable universe", "kind": "decision", "n": 15, "instruments": ["XLMUSDT", "RUNEUSDT", "DASHUSDT", "SNXUSDT", "SYN050USDT", "SYN001USDT", "ARBUSDT", "SYN033USDT", "LTCUSDT", "SYN011USDT", "SYN016USDT", "ZECUSDT", "GALAUSDT", "LINKUSDT", "ADAUSDT"]}
+{"ts": "2026-06-20T12:20:22.681960+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_mean_variance", "kind": "timing", "operation": "backtest_mean_variance", "seconds": 0.0605}
+{"ts": "2026-06-20T12:20:22.905988+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_risk_parity", "kind": "timing", "operation": "backtest_risk_parity", "seconds": 0.21}
+{"ts": "2026-06-20T12:20:23.137988+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_min_variance", "kind": "timing", "operation": "backtest_min_variance", "seconds": 0.2154}
+{"ts": "2026-06-20T12:20:23.278989+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_max_diversification", "kind": "timing", "operation": "backtest_max_diversification", "seconds": 0.1304}
+{"ts": "2026-06-20T12:20:23.334133+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_cvar", "kind": "timing", "operation": "backtest_cvar", "seconds": 0.0337}
+{"ts": "2026-06-20T12:20:23.334133+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected optimisation method", "kind": "decision", "method": "mean_variance", "total_return": 0.4072, "sharpe": 6.203, "diversification_ratio": 1.16, "effective_n": 5.39}
+{"ts": "2026-06-20T12:20:23.365945+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "mean_variance", "n_assets": 15, "turnover": 1.2, "transaction_cost": 3600.0, "profitable": true, "diversification_ratio": 1.16}
+{"ts": "2026-06-20T12:20:23.365945+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.7552}
+{"ts": "2026-06-20T12:20:23.385942+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.755, "produces": "portfolio_ready"}
+{"ts": "2026-06-20T12:20:23.385942+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-20T12:20:23.396944+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-20T12:20:23.397945+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0116}
+{"ts": "2026-06-20T12:20:23.401944+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.012, "produces": "risk_assessment"}
+{"ts": "2026-06-20T12:20:23.401944+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-20T12:20:23.915973+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.5122, "n_folds": 12}
+{"ts": "2026-06-20T12:20:23.927980+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-20T12:20:23.927980+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.5256}
+{"ts": "2026-06-20T12:20:23.935944+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.526, "produces": "backtest_ready"}
+{"ts": "2026-06-20T12:20:23.935944+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-20T12:20:23.938942+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-20T12:20:23.938942+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0027}
+{"ts": "2026-06-20T12:20:23.940945+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-20T12:20:23.940945+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-20T12:20:23.945944+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated bilingual explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-20T12:20:23.945944+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.005}
+{"ts": "2026-06-20T12:20:23.952944+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.005, "produces": "explanation_ready"}
+{"ts": "2026-06-20T12:20:23.952944+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T12:20:26.146551+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T12:20:26.146551+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 2.1931}
+{"ts": "2026-06-20T12:20:26.148526+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 2.193, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T12:20:26.148526+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 88.91}
+{"ts": "2026-06-20T12:22:29.970471+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T12:22:29.978471+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T12:22:29.982471+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T12:22:29.989472+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T12:22:29.994470+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T12:22:29.995471+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-20T12:22:29.999472+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected investable universe", "kind": "decision", "n": 15, "instruments": ["XLMUSDT", "RUNEUSDT", "DASHUSDT", "SNXUSDT", "SYN050USDT", "SYN001USDT", "ARBUSDT", "SYN033USDT", "LTCUSDT", "SYN011USDT", "SYN016USDT", "ZECUSDT", "GALAUSDT", "LINKUSDT", "ADAUSDT"]}
+{"ts": "2026-06-20T12:22:30.054471+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_mean_variance", "kind": "timing", "operation": "backtest_mean_variance", "seconds": 0.0492}
+{"ts": "2026-06-20T12:22:30.266471+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_risk_parity", "kind": "timing", "operation": "backtest_risk_parity", "seconds": 0.1999}
+{"ts": "2026-06-20T12:22:30.490674+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_min_variance", "kind": "timing", "operation": "backtest_min_variance", "seconds": 0.208}
+{"ts": "2026-06-20T12:22:30.619675+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_max_diversification", "kind": "timing", "operation": "backtest_max_diversification", "seconds": 0.118}
+{"ts": "2026-06-20T12:22:30.652674+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_cvar", "kind": "timing", "operation": "backtest_cvar", "seconds": 0.0307}
+{"ts": "2026-06-20T12:22:30.653654+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected optimisation method", "kind": "decision", "method": "risk_parity", "total_return": 0.4209, "sharpe": 6.125, "diversification_ratio": 1.63, "effective_n": 13.7}
+{"ts": "2026-06-20T12:22:30.677639+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "risk_parity", "n_assets": 15, "turnover": 0.212, "transaction_cost": 635.88, "profitable": true, "diversification_ratio": 1.63}
+{"ts": "2026-06-20T12:22:30.677639+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.6822}
+{"ts": "2026-06-20T12:22:30.697638+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.682, "produces": "portfolio_ready"}
+{"ts": "2026-06-20T12:22:30.697638+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-20T12:22:30.707638+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-20T12:22:30.707638+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0103}
+{"ts": "2026-06-20T12:22:30.715639+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.01, "produces": "risk_assessment"}
+{"ts": "2026-06-20T12:22:30.716638+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-20T12:22:39.597280+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 8.8797, "n_folds": 12}
+{"ts": "2026-06-20T12:22:39.610245+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-20T12:22:39.610245+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 8.8939}
+{"ts": "2026-06-20T12:22:39.620264+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 8.894, "produces": "backtest_ready"}
+{"ts": "2026-06-20T12:22:39.620264+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-20T12:22:39.623245+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-20T12:22:39.623245+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0028}
+{"ts": "2026-06-20T12:22:39.626250+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-20T12:22:39.626250+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-20T12:22:39.626250+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0}
+{"ts": "2026-06-20T12:22:39.628271+00:00", "level": "ERROR", "agent": "explainability", "event": "failed", "error": "'rankings'", "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\user\\Desktop\\CMF\\hedge fund\\cryptohedge\\core\\agent.py\", line 86, in run\n    out_message = self.execute(context, message)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\Desktop\\CMF\\hedge fund\\cryptohedge\\agents\\explainability.py\", line 32, in execute\n    sections_ru = self._sections(context, \"ru\")\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\user\\Desktop\\CMF\\hedge fund\\cryptohedge\\agents\\explainability.py\", line 66, in _sections\n    rankings = b[\"rankings\"][: context.config.market_analysis.top_n_hedge_instruments]\n               ~^^^^^^^^^^^^\nKeyError: 'rankings'\n", "duration_s": 0.0}
+{"ts": "2026-06-20T12:22:39.628271+00:00", "level": "ERROR", "agent": "orchestrator", "event": "pipeline halted", "stage": "explainability", "error": "'rankings'"}
+{"ts": "2026-06-20T12:22:39.629245+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": false, "stages": 10, "total_seconds": 9.59}
+{"ts": "2026-06-20T12:23:41.899782+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T12:23:41.906780+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T12:23:41.911781+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T12:23:41.919784+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T12:23:41.925782+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T12:23:42.010780+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-20T12:23:42.017819+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-20T12:23:42.027813+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-20T12:23:42.030786+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-20T12:23:42.030786+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-20T12:23:42.039784+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated bilingual explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-20T12:23:42.039784+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0086}
+{"ts": "2026-06-20T12:23:42.042805+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.009, "produces": "explanation_ready"}
+{"ts": "2026-06-20T12:23:42.043780+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T12:23:43.615173+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T12:23:43.615173+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.572}
+{"ts": "2026-06-20T12:23:43.618180+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.572, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T12:23:43.618180+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 1.58}
+{"ts": "2026-06-20T12:25:18.938828+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T12:25:18.946829+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T12:25:18.951826+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T12:25:18.959827+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T12:25:18.966827+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T12:25:18.966827+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-20T12:25:18.971792+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected investable universe", "kind": "decision", "n": 15, "instruments": ["XLMUSDT", "RUNEUSDT", "DASHUSDT", "SNXUSDT", "SYN050USDT", "SYN001USDT", "ARBUSDT", "SYN033USDT", "LTCUSDT", "SYN011USDT", "SYN016USDT", "ZECUSDT", "GALAUSDT", "LINKUSDT", "ADAUSDT"]}
+{"ts": "2026-06-20T12:25:19.031829+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_mean_variance", "kind": "timing", "operation": "backtest_mean_variance", "seconds": 0.053}
+{"ts": "2026-06-20T12:25:19.251829+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_risk_parity", "kind": "timing", "operation": "backtest_risk_parity", "seconds": 0.2069}
+{"ts": "2026-06-20T12:25:19.482824+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_min_variance", "kind": "timing", "operation": "backtest_min_variance", "seconds": 0.2151}
+{"ts": "2026-06-20T12:25:19.620791+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_max_diversification", "kind": "timing", "operation": "backtest_max_diversification", "seconds": 0.1269}
+{"ts": "2026-06-20T12:25:19.660826+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_cvar", "kind": "timing", "operation": "backtest_cvar", "seconds": 0.0357}
+{"ts": "2026-06-20T12:25:19.660826+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected optimisation method", "kind": "decision", "method": "risk_parity", "total_return": 0.4209, "sharpe": 6.125, "diversification_ratio": 1.63, "effective_n": 13.7}
+{"ts": "2026-06-20T12:25:19.691793+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "risk_parity", "n_assets": 15, "turnover": 0.212, "transaction_cost": 635.88, "profitable": true, "diversification_ratio": 1.63}
+{"ts": "2026-06-20T12:25:19.691793+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.7247}
+{"ts": "2026-06-20T12:25:19.712795+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.725, "produces": "portfolio_ready"}
+{"ts": "2026-06-20T12:25:19.713792+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-20T12:25:19.723792+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-20T12:25:19.724792+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.011}
+{"ts": "2026-06-20T12:25:19.730793+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.011, "produces": "risk_assessment"}
+{"ts": "2026-06-20T12:25:19.730793+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-20T12:25:29.488885+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 9.7555, "n_folds": 12}
+{"ts": "2026-06-20T12:25:29.501855+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-20T12:25:29.501855+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 9.7711}
+{"ts": "2026-06-20T12:25:29.509854+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 9.771, "produces": "backtest_ready"}
+{"ts": "2026-06-20T12:25:29.509854+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-20T12:25:29.512851+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-20T12:25:29.512851+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0028}
+{"ts": "2026-06-20T12:25:29.514852+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-20T12:25:29.515853+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-20T12:25:29.522882+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated bilingual explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-20T12:25:29.522882+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0073}
+{"ts": "2026-06-20T12:25:29.525850+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.007, "produces": "explanation_ready"}
+{"ts": "2026-06-20T12:25:29.525850+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T12:25:31.178977+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T12:25:31.178977+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.6529}
+{"ts": "2026-06-20T12:25:31.180970+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.653, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T12:25:31.180970+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 12.17}
+{"ts": "2026-06-20T12:27:46.693542+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T12:27:46.701573+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T12:27:46.705539+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T12:27:46.713538+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T12:27:46.719574+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T12:27:46.751313+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-20T12:27:46.758276+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-20T12:27:46.768803+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-20T12:27:46.770676+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-20T12:27:46.878677+00:00", "level": "INFO", "agent": "explainability", "event": "restored from checkpoint", "stage": "explainability"}
+{"ts": "2026-06-20T12:27:46.878677+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T12:27:48.433904+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T12:27:48.433904+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.5553}
+{"ts": "2026-06-20T12:27:48.436903+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.555, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T12:27:48.436903+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 1.56}
+{"ts": "2026-06-20T12:29:56.966984+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T12:29:56.973952+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T12:29:56.978984+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T12:29:56.986949+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T12:29:56.993983+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T12:29:57.008952+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-20T12:29:57.012960+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-20T12:29:57.019951+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-20T12:29:57.020972+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-20T12:29:57.021977+00:00", "level": "INFO", "agent": "explainability", "event": "restored from checkpoint", "stage": "explainability"}
+{"ts": "2026-06-20T12:29:57.024952+00:00", "level": "INFO", "agent": "dashboard", "event": "restored from checkpoint", "stage": "dashboard"}
+{"ts": "2026-06-20T12:29:57.024952+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 0.0}
+{"ts": "2026-06-20T12:31:29.405441+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T12:31:29.413442+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T12:31:29.418444+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T12:31:29.425439+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T12:31:29.431439+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T12:31:29.446462+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-20T12:31:29.449437+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-20T12:31:29.455438+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-20T12:31:29.456460+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-20T12:31:29.458436+00:00", "level": "INFO", "agent": "explainability", "event": "restored from checkpoint", "stage": "explainability"}
+{"ts": "2026-06-20T12:31:29.458436+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T12:31:31.011629+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T12:31:31.011629+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.5536}
+{"ts": "2026-06-20T12:31:31.014624+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.554, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T12:31:31.014624+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 1.55}
+{"ts": "2026-06-20T12:31:36.795698+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T12:31:36.802696+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T12:31:36.807665+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T12:31:36.815664+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T12:31:36.821664+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T12:31:36.836665+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-20T12:31:36.840664+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-20T12:31:36.846667+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-20T12:31:36.847664+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-20T12:31:36.849661+00:00", "level": "INFO", "agent": "explainability", "event": "restored from checkpoint", "stage": "explainability"}
+{"ts": "2026-06-20T12:31:36.851661+00:00", "level": "INFO", "agent": "dashboard", "event": "restored from checkpoint", "stage": "dashboard"}
+{"ts": "2026-06-20T12:31:36.851661+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 0.0}
+{"ts": "2026-06-20T12:43:31.848374+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-20T12:43:31.902373+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0525, "provider": "bundled"}
+{"ts": "2026-06-20T12:43:31.903370+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 100, "n_samples": 91}
+{"ts": "2026-06-20T12:43:31.906341+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 100, "n_samples": 91, "n_option_rows": 1968, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-04-01 00:00:00"}
+{"ts": "2026-06-20T12:43:31.907343+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.0578}
+{"ts": "2026-06-20T12:43:31.959340+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.058, "produces": "data_ready"}
+{"ts": "2026-06-20T12:43:31.960345+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-20T12:43:31.963372+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0019}
+{"ts": "2026-06-20T12:43:31.964344+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01226, "vol_of_vol": 0.00305, "ci": [0.01069, 0.01437], "hedge_ratio": 0.1536, "quantity_to_hedge": 28.5428}
+{"ts": "2026-06-20T12:43:32.124371+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.1596}
+{"ts": "2026-06-20T12:43:47.556639+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 15.4314, "n": 30}
+{"ts": "2026-06-20T12:43:47.800639+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.2434, "n": 30}
+{"ts": "2026-06-20T12:43:49.881191+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["SYN023USDT", "SYN045USDT", "SYN005USDT", "ATOMUSDT", "APTUSDT", "ETHUSDT", "SYN012USDT", "SYN044USDT", "LTCUSDT", "SYN048USDT"], "top_scores": [0.823, 0.819, 0.817, 0.814, 0.806, 0.753, 0.696, 0.664, 0.613, 0.593], "regime": "calm"}
+{"ts": "2026-06-20T12:43:49.882190+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 17.9213}
+{"ts": "2026-06-20T12:43:49.897200+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 17.922, "produces": "analysis_ready"}
+{"ts": "2026-06-20T12:43:49.898197+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-20T12:43:49.958191+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.0598}
+{"ts": "2026-06-20T12:43:49.959193+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.0461, "kappa": 9.271, "theta": 0.05535, "eps": 0.438, "rho": -0.075}
+{"ts": "2026-06-20T12:44:51.969388+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 62.0096, "n": 91}
+{"ts": "2026-06-20T12:44:53.770844+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 91, "n_failed": 0, "stable": false, "max_rel_change": 180.382, "heston_iv_rmse": 0.00023, "bs_iv_rmse": 0.75212, "sabr_iv_rmse": 0.76371}
+{"ts": "2026-06-20T12:44:53.771851+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 63.8733}
+{"ts": "2026-06-20T12:44:53.779844+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 63.874, "produces": "calibration_ready"}
+{"ts": "2026-06-20T12:44:53.780869+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-20T12:44:54.158851+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.3733, "n": 91}
+{"ts": "2026-06-20T12:44:54.201845+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.0933, "gamma": 0.0001, "vega": 3121.765, "theta": -26.9778, "rho": -417.9033, "vanna": -1.6456, "volga": 59791.4037, "charm": 0.0138, "premium": 151.755}
+{"ts": "2026-06-20T12:44:54.202851+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0005}
+{"ts": "2026-06-20T12:44:54.202851+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.4218}
+{"ts": "2026-06-20T12:44:54.214844+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.422, "produces": "greeks_ready"}
+{"ts": "2026-06-20T12:44:54.215849+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-20T12:44:54.923062+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.7066, "n": 91}
+{"ts": "2026-06-20T12:44:54.938056+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 111, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -5747.75, "fees": 760.91}
+{"ts": "2026-06-20T12:44:54.939057+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.7225}
+{"ts": "2026-06-20T12:44:54.963058+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.723, "produces": "hedge_decision"}
+{"ts": "2026-06-20T12:44:54.964059+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-20T12:44:54.971057+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected investable universe", "kind": "decision", "n": 15, "instruments": ["XLMUSDT", "RUNEUSDT", "DASHUSDT", "SNXUSDT", "SYN050USDT", "SYN001USDT", "ARBUSDT", "SYN033USDT", "LTCUSDT", "SYN011USDT", "SYN016USDT", "ZECUSDT", "GALAUSDT", "LINKUSDT", "ADAUSDT"]}
+{"ts": "2026-06-20T12:44:55.059058+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_mean_variance", "kind": "timing", "operation": "backtest_mean_variance", "seconds": 0.0789}
+{"ts": "2026-06-20T12:44:55.290064+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_risk_parity", "kind": "timing", "operation": "backtest_risk_parity", "seconds": 0.2167}
+{"ts": "2026-06-20T12:44:55.549057+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_min_variance", "kind": "timing", "operation": "backtest_min_variance", "seconds": 0.2377}
+{"ts": "2026-06-20T12:44:55.693092+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_max_diversification", "kind": "timing", "operation": "backtest_max_diversification", "seconds": 0.1304}
+{"ts": "2026-06-20T12:44:55.730064+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_cvar", "kind": "timing", "operation": "backtest_cvar", "seconds": 0.0326}
+{"ts": "2026-06-20T12:44:55.730064+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected optimisation method", "kind": "decision", "method": "risk_parity", "total_return": 0.4209, "sharpe": 6.125, "diversification_ratio": 1.63, "effective_n": 13.7}
+{"ts": "2026-06-20T12:44:55.760063+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "risk_parity", "n_assets": 15, "turnover": 0.212, "transaction_cost": 635.88, "profitable": true, "diversification_ratio": 1.63}
+{"ts": "2026-06-20T12:44:55.760063+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.7956}
+{"ts": "2026-06-20T12:44:55.777065+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.796, "produces": "portfolio_ready"}
+{"ts": "2026-06-20T12:44:55.777065+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-20T12:44:55.790060+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-20T12:44:55.790060+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0121}
+{"ts": "2026-06-20T12:44:55.795062+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.013, "produces": "risk_assessment"}
+{"ts": "2026-06-20T12:44:55.796061+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-20T12:44:56.306063+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.5076, "n_folds": 12}
+{"ts": "2026-06-20T12:44:56.320058+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-20T12:44:56.321064+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.5242}
+{"ts": "2026-06-20T12:44:56.328061+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.525, "produces": "backtest_ready"}
+{"ts": "2026-06-20T12:44:56.329064+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-20T12:44:56.332057+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-20T12:44:56.333058+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0037}
+{"ts": "2026-06-20T12:44:56.335057+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.004, "produces": "diagnostic_ready"}
+{"ts": "2026-06-20T12:44:56.336058+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-20T12:44:56.344060+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated bilingual explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-20T12:44:56.344060+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0079}
+{"ts": "2026-06-20T12:44:56.349094+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.008, "produces": "explanation_ready"}
+{"ts": "2026-06-20T12:44:56.349094+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T12:44:57.507922+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T12:44:57.507922+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.1583}
+{"ts": "2026-06-20T12:44:57.510923+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.159, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T12:44:57.511924+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 85.51}
+{"ts": "2026-06-20T13:49:40.062380+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-20T13:49:40.117418+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0552, "provider": "bundled"}
+{"ts": "2026-06-20T13:49:40.118383+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 100, "n_samples": 91}
+{"ts": "2026-06-20T13:49:40.120414+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 100, "n_samples": 91, "n_option_rows": 1968, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-04-01 00:00:00"}
+{"ts": "2026-06-20T13:49:40.120414+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.0581}
+{"ts": "2026-06-20T13:49:40.175385+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.058, "produces": "data_ready"}
+{"ts": "2026-06-20T13:49:40.175385+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-20T13:49:40.177416+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0019}
+{"ts": "2026-06-20T13:49:40.178386+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01226, "vol_of_vol": 0.00305, "ci": [0.01069, 0.01437], "hedge_ratio": 0.1536, "quantity_to_hedge": 28.5428}
+{"ts": "2026-06-20T13:49:40.330381+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.1518}
+{"ts": "2026-06-20T13:49:55.225380+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 14.8943, "n": 30}
+{"ts": "2026-06-20T13:49:55.466381+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.2415, "n": 30}
+{"ts": "2026-06-20T13:49:57.637743+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["SYN023USDT", "SYN045USDT", "SYN005USDT", "ATOMUSDT", "APTUSDT", "ETHUSDT", "SYN012USDT", "SYN044USDT", "LTCUSDT", "SYN048USDT"], "top_scores": [0.823, 0.819, 0.817, 0.814, 0.806, 0.753, 0.696, 0.664, 0.613, 0.593], "regime": "calm"}
+{"ts": "2026-06-20T13:49:57.637743+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 17.4626}
+{"ts": "2026-06-20T13:49:57.653741+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 17.463, "produces": "analysis_ready"}
+{"ts": "2026-06-20T13:49:57.654741+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-20T13:49:57.736742+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.0817}
+{"ts": "2026-06-20T13:49:57.736742+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.0461, "kappa": 9.271, "theta": 0.05535, "eps": 0.438, "rho": -0.075}
+{"ts": "2026-06-20T13:51:02.067568+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 64.3306, "n": 91}
+{"ts": "2026-06-20T13:51:03.980533+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 91, "n_failed": 0, "stable": false, "max_rel_change": 180.382, "heston_iv_rmse": 0.00023, "bs_iv_rmse": 0.75212, "sabr_iv_rmse": 0.76371}
+{"ts": "2026-06-20T13:51:03.980533+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 66.3257}
+{"ts": "2026-06-20T13:51:03.989534+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 66.326, "produces": "calibration_ready"}
+{"ts": "2026-06-20T13:51:03.989534+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-20T13:51:04.475567+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.4826, "n": 91}
+{"ts": "2026-06-20T13:51:04.515568+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.0933, "gamma": 0.0001, "vega": 3121.765, "theta": -26.9778, "rho": -417.9033, "vanna": -1.6456, "volga": 59791.4037, "charm": 0.0138, "premium": 151.755}
+{"ts": "2026-06-20T13:51:04.515568+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0005}
+{"ts": "2026-06-20T13:51:04.515568+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.5258}
+{"ts": "2026-06-20T13:51:04.530540+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.526, "produces": "greeks_ready"}
+{"ts": "2026-06-20T13:51:04.530540+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-20T13:51:05.288534+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.7576, "n": 91}
+{"ts": "2026-06-20T13:51:05.303532+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 111, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -5747.75, "fees": 760.91}
+{"ts": "2026-06-20T13:51:05.303532+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.7726}
+{"ts": "2026-06-20T13:51:05.316537+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.773, "produces": "hedge_decision"}
+{"ts": "2026-06-20T13:51:05.317534+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-20T13:51:05.321534+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected investable universe", "kind": "decision", "n": 15, "instruments": ["XLMUSDT", "RUNEUSDT", "DASHUSDT", "SNXUSDT", "SYN050USDT", "SYN001USDT", "ARBUSDT", "SYN033USDT", "LTCUSDT", "SYN011USDT", "SYN016USDT", "ZECUSDT", "GALAUSDT", "LINKUSDT", "ADAUSDT"]}
+{"ts": "2026-06-20T13:51:05.380536+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_mean_variance", "kind": "timing", "operation": "backtest_mean_variance", "seconds": 0.053}
+{"ts": "2026-06-20T13:51:05.602568+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_risk_parity", "kind": "timing", "operation": "backtest_risk_parity", "seconds": 0.2104}
+{"ts": "2026-06-20T13:51:05.839568+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_min_variance", "kind": "timing", "operation": "backtest_min_variance", "seconds": 0.2202}
+{"ts": "2026-06-20T13:51:05.982601+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_max_diversification", "kind": "timing", "operation": "backtest_max_diversification", "seconds": 0.1314}
+{"ts": "2026-06-20T13:51:06.020585+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_cvar", "kind": "timing", "operation": "backtest_cvar", "seconds": 0.035}
+{"ts": "2026-06-20T13:51:06.020585+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected optimisation method", "kind": "decision", "method": "risk_parity", "total_return": 0.4209, "sharpe": 6.125, "diversification_ratio": 1.63, "effective_n": 13.7}
+{"ts": "2026-06-20T13:51:06.052538+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "risk_parity", "n_assets": 15, "turnover": 0.212, "transaction_cost": 635.88, "profitable": true, "diversification_ratio": 1.63}
+{"ts": "2026-06-20T13:51:06.052538+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.7353}
+{"ts": "2026-06-20T13:51:06.077533+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.735, "produces": "portfolio_ready"}
+{"ts": "2026-06-20T13:51:06.077533+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-20T13:51:06.091534+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-20T13:51:06.091534+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0138}
+{"ts": "2026-06-20T13:51:06.096534+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.014, "produces": "risk_assessment"}
+{"ts": "2026-06-20T13:51:06.097534+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-20T13:51:06.596569+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.4973, "n_folds": 12}
+{"ts": "2026-06-20T13:51:06.609533+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-20T13:51:06.609533+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.5125}
+{"ts": "2026-06-20T13:51:06.618536+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.513, "produces": "backtest_ready"}
+{"ts": "2026-06-20T13:51:06.619540+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-20T13:51:06.622537+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-20T13:51:06.622537+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0033}
+{"ts": "2026-06-20T13:51:06.625542+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.003, "produces": "diagnostic_ready"}
+{"ts": "2026-06-20T13:51:06.626535+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-20T13:51:06.634533+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated bilingual explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-20T13:51:06.634533+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.0085}
+{"ts": "2026-06-20T13:51:06.639535+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.009, "produces": "explanation_ready"}
+{"ts": "2026-06-20T13:51:06.639535+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T13:51:08.427537+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T13:51:08.427537+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.7881}
+{"ts": "2026-06-20T13:51:08.430546+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.788, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T13:51:08.431534+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 88.21}
+{"ts": "2026-06-20T13:53:20.072327+00:00", "level": "INFO", "agent": "data_acquisition", "event": "started", "consumes": "start"}
+{"ts": "2026-06-20T13:53:20.122328+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: load_data", "kind": "timing", "operation": "load_data", "seconds": 0.0496, "provider": "bundled"}
+{"ts": "2026-06-20T13:53:20.123326+00:00", "level": "INFO", "agent": "data_acquisition", "event": "validation passed", "n_symbols": 100, "n_samples": 91}
+{"ts": "2026-06-20T13:53:20.125327+00:00", "level": "INFO", "agent": "data_acquisition", "event": "DECISION: loaded and validated market data", "kind": "decision", "provider": "bundled", "n_symbols": 100, "n_samples": 91, "n_option_rows": 1968, "primary_symbol": "BTCUSDT", "date_start": "2024-01-02 00:00:00", "date_end": "2024-04-01 00:00:00"}
+{"ts": "2026-06-20T13:53:20.125327+00:00", "level": "INFO", "agent": "data_acquisition", "event": "timing: data_acquisition.execute", "kind": "timing", "operation": "data_acquisition.execute", "seconds": 0.0524}
+{"ts": "2026-06-20T13:53:20.185324+00:00", "level": "INFO", "agent": "data_acquisition", "event": "completed", "duration_s": 0.053, "produces": "data_ready"}
+{"ts": "2026-06-20T13:53:20.186293+00:00", "level": "INFO", "agent": "market_analysis", "event": "started", "consumes": "data_ready"}
+{"ts": "2026-06-20T13:53:20.190292+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: volatility", "kind": "timing", "operation": "volatility", "seconds": 0.0043}
+{"ts": "2026-06-20T13:53:20.191293+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: sized primary hedge", "kind": "decision", "daily_vol": 0.01226, "vol_of_vol": 0.00305, "ci": [0.01069, 0.01437], "hedge_ratio": 0.1536, "quantity_to_hedge": 28.5428}
+{"ts": "2026-06-20T13:53:20.346292+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: static_correlations", "kind": "timing", "operation": "static_correlations", "seconds": 0.1553}
+{"ts": "2026-06-20T13:53:35.136543+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: dcc_garch", "kind": "timing", "operation": "dcc_garch", "seconds": 14.7895, "n": 30}
+{"ts": "2026-06-20T13:53:35.364540+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: cointegration", "kind": "timing", "operation": "cointegration", "seconds": 0.2278, "n": 30}
+{"ts": "2026-06-20T13:53:37.262463+00:00", "level": "INFO", "agent": "market_analysis", "event": "DECISION: selected hedge universe", "kind": "decision", "instruments": ["SYN023USDT", "SYN045USDT", "SYN005USDT", "ATOMUSDT", "APTUSDT", "ETHUSDT", "SYN012USDT", "SYN044USDT", "LTCUSDT", "SYN048USDT"], "top_scores": [0.823, 0.819, 0.817, 0.814, 0.806, 0.753, 0.696, 0.664, 0.613, 0.593], "regime": "calm"}
+{"ts": "2026-06-20T13:53:37.262463+00:00", "level": "INFO", "agent": "market_analysis", "event": "timing: market_analysis.execute", "kind": "timing", "operation": "market_analysis.execute", "seconds": 17.0765}
+{"ts": "2026-06-20T13:53:37.280461+00:00", "level": "INFO", "agent": "market_analysis", "event": "completed", "duration_s": 17.077, "produces": "analysis_ready"}
+{"ts": "2026-06-20T13:53:37.280461+00:00", "level": "INFO", "agent": "heston_calibration", "event": "started", "consumes": "analysis_ready"}
+{"ts": "2026-06-20T13:53:37.362484+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: mle", "kind": "timing", "operation": "mle", "seconds": 0.0811}
+{"ts": "2026-06-20T13:53:37.362484+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: MLE calibration", "kind": "decision", "v0": 0.0461, "kappa": 9.271, "theta": 0.05535, "eps": 0.438, "rho": -0.075}
+{"ts": "2026-06-20T13:54:34.798492+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: per_slice_calibration", "kind": "timing", "operation": "per_slice_calibration", "seconds": 57.4362, "n": 91}
+{"ts": "2026-06-20T13:54:36.472482+00:00", "level": "INFO", "agent": "heston_calibration", "event": "DECISION: calibration complete", "kind": "decision", "n_slices": 91, "n_failed": 0, "stable": false, "max_rel_change": 180.382, "heston_iv_rmse": 0.00023, "bs_iv_rmse": 0.75212, "sabr_iv_rmse": 0.76371}
+{"ts": "2026-06-20T13:54:36.472482+00:00", "level": "INFO", "agent": "heston_calibration", "event": "timing: heston_calibration.execute", "kind": "timing", "operation": "heston_calibration.execute", "seconds": 59.1913}
+{"ts": "2026-06-20T13:54:36.481462+00:00", "level": "INFO", "agent": "heston_calibration", "event": "completed", "duration_s": 59.191, "produces": "calibration_ready"}
+{"ts": "2026-06-20T13:54:36.481462+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "started", "consumes": "calibration_ready"}
+{"ts": "2026-06-20T13:54:36.828460+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_timeseries", "kind": "timing", "operation": "greeks_timeseries", "seconds": 0.3439, "n": 91}
+{"ts": "2026-06-20T13:54:36.867492+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: computed portfolio greeks", "kind": "decision", "delta": -0.0933, "gamma": 0.0001, "vega": 3121.765, "theta": -26.9778, "rho": -417.9033, "vanna": -1.6456, "volga": 59791.4037, "charm": 0.0138, "premium": 151.755}
+{"ts": "2026-06-20T13:54:36.867492+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "DECISION: delta balance", "kind": "decision", "zone": "green", "delta_fraction": 0.0005}
+{"ts": "2026-06-20T13:54:36.867492+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "timing: greeks_calculation.execute", "kind": "timing", "operation": "greeks_calculation.execute", "seconds": 0.3854}
+{"ts": "2026-06-20T13:54:36.881460+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "completed", "duration_s": 0.385, "produces": "greeks_ready"}
+{"ts": "2026-06-20T13:54:36.881460+00:00", "level": "INFO", "agent": "hedging_decision", "event": "started", "consumes": "greeks_ready"}
+{"ts": "2026-06-20T13:54:37.529460+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_run", "kind": "timing", "operation": "hedging_run", "seconds": 0.648, "n": 91}
+{"ts": "2026-06-20T13:54:37.542492+00:00", "level": "INFO", "agent": "hedging_decision", "event": "DECISION: executed delta-vega hedge", "kind": "decision", "n_trades": 111, "residual_delta": 0.0, "residual_vega": 0.0, "pnl": -5747.75, "fees": 760.91}
+{"ts": "2026-06-20T13:54:37.542492+00:00", "level": "INFO", "agent": "hedging_decision", "event": "timing: hedging_decision.execute", "kind": "timing", "operation": "hedging_decision.execute", "seconds": 0.6614}
+{"ts": "2026-06-20T13:54:37.554460+00:00", "level": "INFO", "agent": "hedging_decision", "event": "completed", "duration_s": 0.662, "produces": "hedge_decision"}
+{"ts": "2026-06-20T13:54:37.554460+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "started", "consumes": "hedge_decision"}
+{"ts": "2026-06-20T13:54:37.559496+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected investable universe", "kind": "decision", "n": 15, "instruments": ["XLMUSDT", "RUNEUSDT", "DASHUSDT", "SNXUSDT", "SYN050USDT", "SYN001USDT", "ARBUSDT", "SYN033USDT", "LTCUSDT", "SYN011USDT", "SYN016USDT", "ZECUSDT", "GALAUSDT", "LINKUSDT", "ADAUSDT"]}
+{"ts": "2026-06-20T13:54:37.628461+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_mean_variance", "kind": "timing", "operation": "backtest_mean_variance", "seconds": 0.0632}
+{"ts": "2026-06-20T13:54:37.879460+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_risk_parity", "kind": "timing", "operation": "backtest_risk_parity", "seconds": 0.2238}
+{"ts": "2026-06-20T13:54:38.110495+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_min_variance", "kind": "timing", "operation": "backtest_min_variance", "seconds": 0.2142}
+{"ts": "2026-06-20T13:54:38.246463+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_max_diversification", "kind": "timing", "operation": "backtest_max_diversification", "seconds": 0.1253}
+{"ts": "2026-06-20T13:54:38.282494+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: backtest_cvar", "kind": "timing", "operation": "backtest_cvar", "seconds": 0.0324}
+{"ts": "2026-06-20T13:54:38.282494+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: selected optimisation method", "kind": "decision", "method": "risk_parity", "total_return": 0.4209, "sharpe": 6.125, "diversification_ratio": 1.63, "effective_n": 13.7}
+{"ts": "2026-06-20T13:54:38.314461+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "DECISION: portfolio optimization", "kind": "decision", "chosen": "risk_parity", "n_assets": 15, "turnover": 0.212, "transaction_cost": 635.88, "profitable": true, "diversification_ratio": 1.63}
+{"ts": "2026-06-20T13:54:38.314461+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "timing: portfolio_optimization.execute", "kind": "timing", "operation": "portfolio_optimization.execute", "seconds": 0.76}
+{"ts": "2026-06-20T13:54:38.332460+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "completed", "duration_s": 0.76, "produces": "portfolio_ready"}
+{"ts": "2026-06-20T13:54:38.332460+00:00", "level": "INFO", "agent": "risk_management", "event": "started", "consumes": "portfolio_ready"}
+{"ts": "2026-06-20T13:54:38.344466+00:00", "level": "INFO", "agent": "risk_management", "event": "DECISION: risk assessment", "kind": "decision", "var": 6e-05, "cvar": 7e-05, "max_drawdown": -0.0003, "within_limits": true, "breached": [], "stop_price": 50248.07, "stop_distance_pct": 0.0661}
+{"ts": "2026-06-20T13:54:38.344466+00:00", "level": "INFO", "agent": "risk_management", "event": "timing: risk_management.execute", "kind": "timing", "operation": "risk_management.execute", "seconds": 0.0111}
+{"ts": "2026-06-20T13:54:38.350462+00:00", "level": "INFO", "agent": "risk_management", "event": "completed", "duration_s": 0.011, "produces": "risk_assessment"}
+{"ts": "2026-06-20T13:54:38.350462+00:00", "level": "INFO", "agent": "backtesting", "event": "started", "consumes": "risk_assessment"}
+{"ts": "2026-06-20T13:54:38.819494+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: walk_forward", "kind": "timing", "operation": "walk_forward", "seconds": 0.4677, "n_folds": 12}
+{"ts": "2026-06-20T13:54:38.833464+00:00", "level": "INFO", "agent": "backtesting", "event": "DECISION: backtest complete", "kind": "decision", "roi": -0.0002, "sharpe": -1.538, "sortino": -2.23, "calmar": -2.957, "max_drawdown": -0.0003, "var": 6e-05, "cvar": 7e-05, "n_folds": 12}
+{"ts": "2026-06-20T13:54:38.833464+00:00", "level": "INFO", "agent": "backtesting", "event": "timing: backtesting.execute", "kind": "timing", "operation": "backtesting.execute", "seconds": 0.4833}
+{"ts": "2026-06-20T13:54:38.847464+00:00", "level": "INFO", "agent": "backtesting", "event": "completed", "duration_s": 0.483, "produces": "backtest_ready"}
+{"ts": "2026-06-20T13:54:38.848463+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "started", "consumes": "backtest_ready"}
+{"ts": "2026-06-20T13:54:38.851488+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "DECISION: self-diagnostic", "kind": "decision", "confidence": 0.475, "drift_detected": true, "assessment": "low_confidence", "components": {"calibration": 0.5, "data_drift": 0.0, "forecast_error": 0.0, "hedge_quality": 1.0, "risk_compliance": 1.0}}
+{"ts": "2026-06-20T13:54:38.851488+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "timing: self_diagnostic.execute", "kind": "timing", "operation": "self_diagnostic.execute", "seconds": 0.0036}
+{"ts": "2026-06-20T13:54:38.855462+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "completed", "duration_s": 0.004, "produces": "diagnostic_ready"}
+{"ts": "2026-06-20T13:54:38.855462+00:00", "level": "INFO", "agent": "explainability", "event": "started", "consumes": "diagnostic_ready"}
+{"ts": "2026-06-20T13:54:38.865463+00:00", "level": "INFO", "agent": "explainability", "event": "DECISION: generated bilingual explanation", "kind": "decision", "sections": 8, "confidence": 0.475}
+{"ts": "2026-06-20T13:54:38.865463+00:00", "level": "INFO", "agent": "explainability", "event": "timing: explainability.execute", "kind": "timing", "operation": "explainability.execute", "seconds": 0.01}
+{"ts": "2026-06-20T13:54:38.871464+00:00", "level": "INFO", "agent": "explainability", "event": "completed", "duration_s": 0.01, "produces": "explanation_ready"}
+{"ts": "2026-06-20T13:54:38.871464+00:00", "level": "INFO", "agent": "dashboard", "event": "started", "consumes": "explanation_ready"}
+{"ts": "2026-06-20T13:54:40.454789+00:00", "level": "INFO", "agent": "dashboard", "event": "DECISION: dashboard generated", "kind": "decision", "languages": ["ru", "en"], "path_ru": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_ru.html", "path_en": "C:\\Users\\user\\Desktop\\CMF\\hedge fund\\artifacts\\results\\dashboard_en.html"}
+{"ts": "2026-06-20T13:54:40.454789+00:00", "level": "INFO", "agent": "dashboard", "event": "timing: dashboard.execute", "kind": "timing", "operation": "dashboard.execute", "seconds": 1.5835}
+{"ts": "2026-06-20T13:54:40.458785+00:00", "level": "INFO", "agent": "dashboard", "event": "completed", "duration_s": 1.584, "produces": "dashboard_ready"}
+{"ts": "2026-06-20T13:54:40.458785+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 80.22}
+{"ts": "2026-06-20T14:12:44.672956+00:00", "level": "INFO", "agent": "data_acquisition", "event": "restored from checkpoint", "stage": "data_acquisition"}
+{"ts": "2026-06-20T14:12:44.728041+00:00", "level": "INFO", "agent": "market_analysis", "event": "restored from checkpoint", "stage": "market_analysis"}
+{"ts": "2026-06-20T14:12:44.773037+00:00", "level": "INFO", "agent": "heston_calibration", "event": "restored from checkpoint", "stage": "heston_calibration"}
+{"ts": "2026-06-20T14:12:44.835042+00:00", "level": "INFO", "agent": "greeks_calculation", "event": "restored from checkpoint", "stage": "greeks_calculation"}
+{"ts": "2026-06-20T14:12:44.876073+00:00", "level": "INFO", "agent": "hedging_decision", "event": "restored from checkpoint", "stage": "hedging_decision"}
+{"ts": "2026-06-20T14:12:44.977037+00:00", "level": "INFO", "agent": "portfolio_optimization", "event": "restored from checkpoint", "stage": "portfolio_optimization"}
+{"ts": "2026-06-20T14:12:45.014041+00:00", "level": "INFO", "agent": "risk_management", "event": "restored from checkpoint", "stage": "risk_management"}
+{"ts": "2026-06-20T14:12:45.053036+00:00", "level": "INFO", "agent": "backtesting", "event": "restored from checkpoint", "stage": "backtesting"}
+{"ts": "2026-06-20T14:12:45.069075+00:00", "level": "INFO", "agent": "self_diagnostic", "event": "restored from checkpoint", "stage": "self_diagnostic"}
+{"ts": "2026-06-20T14:12:45.149072+00:00", "level": "INFO", "agent": "explainability", "event": "restored from checkpoint", "stage": "explainability"}
+{"ts": "2026-06-20T14:12:45.166037+00:00", "level": "INFO", "agent": "dashboard", "event": "restored from checkpoint", "stage": "dashboard"}
+{"ts": "2026-06-20T14:12:45.166037+00:00", "level": "INFO", "agent": "orchestrator", "event": "pipeline finished", "success": true, "stages": 11, "total_seconds": 0.0}

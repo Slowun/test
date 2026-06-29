@@ -1,0 +1,42 @@
+# ============================================================================
+# diagnostics.yaml — САМОДИАГНОСТИКА, ОБЪЯСНИМОСТЬ, ДАШБОРД, ЛОГИРОВАНИЕ.
+# Загружается core/config.py → секции diagnostic, explainability, dashboard, logging.
+# Используется агентами 9 (SelfDiagnostic), 10 (Explainability), 11 (Dashboard)
+# и каркасом логирования (core/logging.py).
+# ============================================================================
+
+# Self-diagnostics, explainability, dashboard and logging.
+diagnostic:                         # → DiagnosticConfig (агент 9)
+  drift_method: psi                 # psi | ks   # метод оценки дрейфа данных
+  drift_threshold: 0.2              # порог, выше которого фиксируется дрейф
+  degradation_metric: rmse          # метрика деградации качества прогноза
+  degradation_window: 10            # окно оценки деградации
+  degradation_threshold: 2.0        # порог деградации (× от базовой ошибки)
+  confidence_weights:               # веса компонент интегрального индекса доверия
+    calibration: 0.25               # качество калибровки модели
+    data_drift: 0.20                # стабильность распределения данных
+    forecast_error: 0.20            # ошибка прогноза
+    hedge_quality: 0.20             # качество хеджирования
+    risk_compliance: 0.15           # соблюдение риск-лимитов
+
+explainability:                     # → ExplainabilityConfig (агент 10)
+  language: ru                      # язык объяснений по умолчанию
+  max_reasons: 6                    # макс. число причин в текстовом объяснении
+  decimals: 4                       # знаков после запятой в числах объяснения
+
+dashboard:                          # → DashboardConfig (агент 11)
+  output_html: artifacts/results/dashboard.html  # путь к основному HTML-дашборду
+  output_dir: artifacts/results       # per-language dashboards: dashboard_ru.html / dashboard_en.html  # каталог дашбордов
+  languages: [ru, en]                 # fully Russian and fully English dashboards  # языки дашборда
+  delta_green_zone: 0.05            # «зелёная» зона дельты (для индикатора)
+  delta_red_zone: 0.15              # «красная» зона дельты (для индикатора)
+  height: 2200                      # высота дашборда, px
+  width: 1300                       # ширина дашборда, px
+  theme: plotly_dark                # тема оформления Plotly
+
+logging:                            # → LoggingConfig (core/logging.py)
+  level: INFO                       # уровень логирования
+  console: true                     # выводить ли логи в консоль
+  jsonl: true                       # писать ли машинно-читаемый JSONL-лог
+  file_name: cryptohedge.jsonl      # имя файла лога
+  timing: true                      # логировать ли тайминги операций

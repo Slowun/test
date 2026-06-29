@@ -1,0 +1,36 @@
+{
+  "psi": 1.4559466046205858,
+  "ks": {
+    "statistic": 0.2,
+    "pvalue": 0.33194772679901
+  },
+  "drift_detected": true,
+  "forecast_error": {
+    "rmse": 0.009066558405015425,
+    "mae": 0.007178593555697007,
+    "bias": 0.0026928753604461373
+  },
+  "stability": {
+    "stable": false,
+    "max_rel_change": 180.3816917708476,
+    "mean_rel_change": 0.7083574764598781,
+    "per_param": {
+      "v0": 3.472698760918564,
+      "kappa": 0.02504670716478074,
+      "theta": 0.02616511325517995,
+      "eps": 0.013053849679589441,
+      "rho": 0.004822951281274856
+    }
+  },
+  "residual_delta_usd": 4.245542119642667e-11,
+  "residual_delta_fraction": 4.245542119642667e-18,
+  "components": {
+    "calibration": 0.4997492433591555,
+    "data_drift": 0.0,
+    "forecast_error": 0.0,
+    "hedge_quality": 1.0,
+    "risk_compliance": 1.0
+  },
+  "confidence_score": 0.47493731083978885,
+  "self_assessment": "low_confidence"
+}

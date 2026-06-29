@@ -1,0 +1,18 @@
+{
+  "survivorship_bias": {
+    "controlled": true,
+    "note": "Full universe retained across the window; no winners-only selection."
+  },
+  "selection_bias": {
+    "controlled": true,
+    "note": "Hedge universe ranked on in-sample data only; no peeking at test folds."
+  },
+  "transaction_cost_bias": {
+    "controlled": true,
+    "note": "Spot and option fees (incl. cap) charged on every trade."
+  },
+  "look_ahead": {
+    "controlled": true,
+    "note": "Walk-forward folds with purge/embargo; per-slice calibration is contemporaneous."
+  }
+}
