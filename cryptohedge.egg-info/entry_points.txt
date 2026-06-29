@@ -1,0 +1,2 @@
+[console_scripts]
+cryptohedge = cryptohedge.cli:main
