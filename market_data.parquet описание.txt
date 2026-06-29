@@ -1,0 +1,24 @@
+Колонка	Описание
+sample_idx	Идентификатор временного среза (уникальный для каждого момента времени)
+timestamp	Временная метка (datetime)
+instrument_type	Тип инструмента: ASSET=7, CALL_OPTION=5, PUT_OPTION=6
+strike	Страйк опциона
+expiry_ts	Дата экспирации (timestamp)
+time_to_maturity	Время до экспирации в годах
+price	Средняя цена
+best_bid_price	Лучшая цена покупки
+best_ask_price	Лучшая цена продажи
+bid_amount_total	Объем на покупку
+ask_amount_total	Объем на продажу
+bid_vwap	VWAP на покупку
+ask_vwap	VWAP на продажу
+
+Пример:
+sample_idx: 2502
+timestamp: 2024-01-02 01:01:53.824
+instrument_type: 5 (CALL)
+strike: 4500.0
+expiry_ts: 2024-09-26 21:00:00
+price: 0.08775
+best_bid: 0.0850
+best_ask: 0.0905

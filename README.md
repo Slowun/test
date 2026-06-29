@@ -1,0 +1,240 @@
+# CryptoHedge — мультиагентная система хеджирования валютного риска криптовалют
+
+Система принимает решения по хеджированию валютного риска, который определяется
+**волатильностью криптовалют**, с помощью **модели Хестона** и одиннадцати
+автономных агентов. Проект модульный, воспроизводимый, конфигурируемый и
+полностью укомплектован данными.
+
+> Базовый сценарий: капитал **$10 000 000**, риск-аппетит и комиссии задаются в
+> конфигурации, горизонт анализа — **3 месяца**, горизонт прогноза — **1 день**.
+
+- Архитектура, диаграммы и протокол взаимодействия агентов: **[ARCHITECTURE.md](ARCHITECTURE.md)**.
+- Единое автономное решение: ноутбук **[`solution.ipynb`](solution.ipynb)**.
+- 🇬🇧 **English version of this document: [README.en.md](README.en.md)** · **[ARCHITECTURE.en.md](ARCHITECTURE.en.md)**.
+
+---
+
+## 1. Возможности (соответствие техническому заданию)
+
+| Требование ТЗ | Где реализовано |
+|---|---|
+| 1. Капитал, риск, комиссии | `config/system.yaml` → `cryptohedge/core/config.py` |
+| 2. Спот 100 криптовалют за 3 мес., онлайн-источник | `services/providers/{binance,bundled,synthetic}.py`, агент `data_acquisition` |
+| 3. Опционы пут/колл, экспирация 30 дней | те же провайдеры (опционная цепочка BTC), `data_acquisition` |
+| 4. Суточная волатильность, vol-of-vol, дов. интервал, объём хеджа BTC | `services/volatility.py`, агент `market_analysis` |
+| 5. Корреляции и подбор инструментов | `services/correlation.py`, агент `market_analysis` |
+| 5.1. Пирсон, Спирмен, Кендалл, DCC-GARCH, коинтеграция (Johansen/Engle-Granger) | `services/correlation.py` |
+| 5.2. Рейтинг по 5 критериям | `correlation.rank_instruments` |
+| 6. Греки Δ, ν | `services/greeks.py`, агент `greeks_calculation` |
+| 6.1. Γ, Θ, ρ, charm (+ vanna, volga) | `services/greeks.py` |
+| 6.2. Агрегированные греки (инструмент / портфель) | `domain/greeks.py`, `greeks_calculation` |
+| 7. Хестон-хедж: спот, PnL, комиссии, Δ/ν-хедж, позиции, премия, Δ/ν портфеля | `services/hedging_engine.py`, агент `hedging_decision` |
+| 7.1. Калибровка MLE / по IV-поверхности | `services/calibration.py`, `services/heston_pricing.py` |
+| 7.2. Контроль устойчивости параметров | `calibration.parameter_stability` |
+| 7.3. Бенчмарки Black-Scholes и SABR | `calibration.{black_scholes_benchmark,sabr_calibrate}` |
+| 8.1. ROI, Sharpe, Sortino, Calmar, MDD, Profit Factor, Win Rate, VaR, CVaR, ES, Beta, Alpha, IR | `services/metrics.py` |
+| 9.1. MV, Risk Parity, Min Variance, Max Diversification, CVaR | `services/optimization.py` |
+| 9.2. Транзакционные издержки и частота ребаланса | `optimization` + агент `portfolio_optimization` |
+| 9.3. Диверсифицированный и прибыльный портфель (подтверждение) | `services/portfolio_backtest.py`, агент `portfolio_optimization` |
+| 9.4. Метрики диверсификации (DR, эфф. число активов, HHI) + бэктест с ребалансировкой | `portfolio_backtest.{diversification_report,backtest_rebalanced}` |
+| 10. Адаптивные стоп-лоссы (волатильность, ATR, VaR, Хестон) | `services/stops.py`, агент `risk_management` |
+| 10.2. Динамический трейлинг-стоп | `stops.TrailingStop` |
+| 11. Самотестирование, data drift, Confidence Score | `services/drift.py`, агент `self_diagnostic` |
+| 12. Бэктест + калибровка по временным рядам (MLE) | агент `backtesting`, `services/walkforward.py` |
+| 12.1. Walk-forward без look-ahead | `walkforward.walk_forward_splits` (purge/embargo) |
+| 12.2. Survivorship / selection / transaction-cost bias | `backtesting._bias_controls` |
+| 12.3. Стресс-тестирование | `backtesting._stress_test` |
+| 13. Дашборд (цена+PnL, греки, состав портфеля, ребалансировка, диверсификация, теплокарта, стресс, метрики, издержки) | агент `dashboard` (Plotly HTML, RU+EN) |
+| 13.1. Полностью русская и полностью английская версии дашборда | `services/i18n.py`, агент `dashboard` (`dashboard_ru.html`, `dashboard_en.html`) |
+| 14. Explainability на естественном языке (RU + EN) | агент `explainability` (`explanation.md`, `explanation.en.md`) |
+| 15. Мультиагентная структура (11 агентов) | `cryptohedge/agents/*` |
+| Логирование, чекпойнты, seed, SOLID, тесты, lock-файл | `core/*`, `tests/*`, `uv.lock` |
+
+---
+
+## 2. Структура проекта
+
+```
+hedge fund/
+├── config/                 # все параметры системы (YAML), без хардкода
+│   ├── system.yaml         # seed, капитал, риск, комиссии, горизонты, пути, runtime
+│   ├── data.yaml           # провайдер данных и параметры рынка
+│   ├── market.yaml         # market analysis, Heston, греки, хедж
+│   ├── portfolio.yaml      # оптимизация, риск, бэктест, стресс-сценарии
+│   └── diagnostics.yaml    # самодиагностика, explainability, dashboard, логи
+├── cryptohedge/            # мультиагентная система (Clean Architecture)
+│   ├── core/               # config, seeding, logging, message/bus, context, agent, orchestrator, checkpoint
+│   ├── domain/             # чистые сущности (market, greeks, portfolio, decisions)
+│   ├── services/           # вычислительные use-cases + провайдеры данных
+│   ├── agents/             # 11 независимых агентов с единым интерфейсом
+│   └── cli.py              # запуск конвейера из командной строки / ноутбука
+├── pyquant/                # численный движок (numba/NumPy): Black-Scholes, Heston, vol surface
+├── data/raw/               # воспроизводимый набор данных (укомплектован)
+├── scripts/generate_data.py
+├── tests/                  # unit + integration тесты
+├── artifacts/              # результаты прогона (логи, чекпойнты, калибровки, дашборд)
+├── solution.ipynb          # ЕДИНОЕ автономное воспроизводимое решение
+├── pyproject.toml          # зависимости (uv/pip), метаданные
+├── uv.lock                 # lock-файл (фиксация зависимостей)
+├── requirements.txt        # экспорт зависимостей для pip
+├── README.md
+└── ARCHITECTURE.md         # диаграммы (Mermaid), роли, маршрутизация
+```
+
+---
+
+## 3. Установка
+
+Требуется **Python 3.10 или 3.11** (numba 0.57 ограничивает NumPy ≤ 1.24,
+поэтому версии зафиксированы).
+
+### Вариант A — `uv` (рекомендуется)
+
+```bash
+pip install uv            # если uv ещё не установлен
+uv sync                   # создаст окружение строго по uv.lock
+```
+
+### Вариант B — `pip`
+
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate   |   Linux/macOS: source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Вариант C — `pip` из `pyproject.toml`
+
+```bash
+pip install -e ".[dev,notebook]"
+```
+
+---
+
+## 4. Запуск
+
+### 4.1. Единое решение (ноутбук)
+
+```bash
+jupyter notebook solution.ipynb     # или Jupyter Lab / VS Code
+```
+
+Ноутбук самодостаточен: задаёт seed, загружает конфигурацию, запускает все 11
+агентов через оркестратор, показывает калибровку, греки, PnL, метрики,
+стресс-тесты, объяснение и интерактивный дашборд.
+
+### 4.2. Командная строка
+
+```bash
+# (опционально) сгенерировать/обновить набор данных
+python scripts/generate_data.py
+
+# полный конвейер
+python -m cryptohedge.cli --config config
+
+# полезные флаги
+python -m cryptohedge.cli --provider synthetic   # сменить источник данных
+python -m cryptohedge.cli --reset                # игнорировать чекпойнты
+python -m cryptohedge.cli --no-fail-fast         # не останавливаться на ошибке стадии
+```
+
+### 4.3. Тесты
+
+```bash
+pytest -q                       # все тесты
+pytest tests/test_core.py -q    # каркас (config, seed, checkpoint, шина)
+pytest tests/test_quant_services.py -q   # численные сервисы
+pytest tests/test_integration.py -q      # взаимодействие 11 агентов + воспроизводимость
+```
+
+---
+
+## 5. Источники данных
+
+Провайдер выбирается в `config/data.yaml` (`data.provider`):
+
+- **`bundled`** (по умолчанию) — читает воспроизводимый набор из `data/raw/`;
+  если файлов нет, детерминированно генерирует их из `seed`. Полностью офлайн.
+- **`synthetic`** — генерирует данные на лету (Хестон-симуляция спота BTC,
+  коррелированная вселенная из 100 активов, согласованная опционная цепочка).
+- **`binance`** — тянет **живые** спот-котировки с публичного REST Binance
+  (без регистрации/ключей); опционная цепочка строится Хестон-согласованно
+  вокруг живого спота. При отсутствии сети автоматически откатывается к
+  синтетике, поэтому прогон остаётся воспроизводимым.
+
+> Требование «онлайн-котировки» закрывает провайдер `binance`; требование
+> «все данные включены и воспроизводимы» закрывает `bundled`. Переключение — одна
+> строка в конфиге.
+
+---
+
+## 6. Интерпретация результатов
+
+После прогона артефакты появляются в `artifacts/`:
+
+| Путь | Содержимое |
+|---|---|
+| `artifacts/results/dashboard_ru.html` | интерактивный дашборд — **полностью русская** версия |
+| `artifacts/results/dashboard_en.html` | интерактивный дашборд — **полностью английская** версия |
+| `artifacts/results/dashboard.html` | копия дашборда по умолчанию (RU) для обратной совместимости |
+| `artifacts/results/performance_metrics.json` | ROI, Sharpe, Sortino, Calmar, MDD, VaR, CVaR, Beta, Alpha, IR, … |
+| `artifacts/results/hedging_history.parquet` | спот, PnL, комиссии, Δ/ν-хедж, позиции по шагам |
+| `artifacts/results/portfolio_constituents.parquet` | состав портфеля: инструменты, веса, ожид. доходность, волатильность, связь с BTC |
+| `artifacts/results/portfolio_equity.parquet` | динамика стоимости портфеля и равновзвешенного бенчмарка |
+| `artifacts/results/portfolio_weights_path.parquet` | эволюция весов портфеля при ребалансировке |
+| `artifacts/results/portfolio_methods.parquet` | сравнение 5 методов оптимизации (доходность, Sharpe, диверсификация) |
+| `artifacts/results/stress_test.parquet` | разложение PnL по «ногам» и сравнение «хедж vs голый BTC» |
+| `artifacts/results/walkforward.parquet` | метрики по фолдам walk-forward |
+| `artifacts/results/explanation.md` / `explanation.en.md` | объяснение решений на естественном языке (RU / EN) |
+| `artifacts/calibration/calibr_data.parquet` | параметры Хестона по срезам (v0, kappa, theta, eps, rho) |
+| `artifacts/calibration/heston_{stability,benchmarks}.json` | устойчивость и сравнение с BS/SABR |
+| `artifacts/logs/cryptohedge.jsonl` | структурный лог действий, решений, ошибок и таймингов |
+| `artifacts/checkpoints/<run_id>/` | чекпойнты для восстановления |
+
+**Как читать ключевые величины:**
+
+- **Δ портфеля → 0** означает, что ценовой риск нейтрализован спотом
+  (зелёная/красная зоны задаются `hedging.delta_green_zone/red_zone`).
+- **Vega-хедж** показывает защиту от изменения волатильности («страха» рынка).
+- **Стресс-тесты** сравнивают захеджированный портфель с голой позицией BTC при
+  шоках ±5/±10% и скачке волатильности; `hedge_effectiveness` ≈ 1 — хедж работает.
+- **Confidence Score** (0..1) — интегральная самооценка адекватности модели
+  (data drift + деградация калибровки/прогноза + качество хеджа + соблюдение лимитов).
+- **Портфель: диверсификация + прибыльность.** Агент `portfolio_optimization`
+  строит инвестиционный портфель пятью методами, прогоняет для каждого бэктест с
+  ребалансировкой (с учётом комиссий) и автоматически выбирает метод, который
+  **прибылен и максимально диверсифицирован**. Диверсификация подтверждается
+  метриками: **коэффициент диверсификации** (DR ≥ 1, чем больше, тем лучше),
+  **эффективное число активов** (обратный индекс Херфиндаля, в идеале близко к
+  числу позиций), **максимальный вес** и **HHI** (концентрация). На дашборде это
+  блоки «Состав портфеля», «Динамика стоимости портфеля и ребалансировки»,
+  «Эволюция весов портфеля» и «Диверсификация и сравнение методов».
+- **Двуязычные дашборды.** Генерируются `dashboard_ru.html` и `dashboard_en.html`
+  с переключателем языка; набор языков задаётся в `config/diagnostics.yaml`
+  (`dashboard.languages`).
+
+---
+
+## 7. Воспроизводимость
+
+- Единый `seed` (`config/system.yaml`) детерминирует все случайные процессы.
+- Зависимости зафиксированы в `uv.lock` (и `requirements.txt`).
+- Набор данных включён в репозиторий (`data/raw/`).
+- Тест `tests/test_integration.py::test_pipeline_reproducible` проверяет, что
+  два независимых прогона дают идентичные PnL и объём хеджа.
+
+```bash
+# два прогона дают одинаковые результаты при одном seed
+python -m cryptohedge.cli --reset
+python -m cryptohedge.cli --reset
+```
+
+---
+
+## 8. Конфигурация
+
+Все параметры вынесены в `config/*.yaml` и валидируются pydantic-моделями
+(`cryptohedge/core/config.py`, `extra="forbid"` — неизвестные ключи запрещены).
+Файлы сливаются по слоям; переопределять значения можно через `overrides`
+(в ноутбуке/тестах) или флаги CLI. Главное: **в исходном коде нет «зашитых»
+бизнес-параметров** — капитал, риск, комиссии, окна, пороги и веса задаются в YAML.

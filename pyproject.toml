@@ -1,0 +1,59 @@
+[project]
+name = "cryptohedge"
+version = "1.0.0"
+description = "Multi-agent system for hedging crypto FX (volatility) risk with the Heston model"
+readme = "README.md"
+requires-python = ">=3.10,<3.12"
+license = { text = "MIT" }
+authors = [{ name = "CryptoHedge Team" }]
+
+# Versions are pinned for full reproducibility (numba 0.57 caps numpy at 1.24).
+dependencies = [
+    "numpy==1.24.4",
+    "numba==0.57.1",
+    "pandas==2.0.3",
+    "scipy==1.11.4",
+    "statsmodels==0.14.1",
+    "arch==6.2.0",
+    "scikit-learn==1.3.2",
+    "pyarrow>=12,<16",
+    "pydantic==2.13.4",
+    "pyyaml>=6,<7",
+    "plotly>=5.18,<6",
+    "tqdm>=4.66,<5",
+    "requests>=2.31,<3",
+    "torch==2.2.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.4",
+    "pytest-cov>=4.1,<5",
+]
+notebook = [
+    "jupyter>=1.0",
+    "ipykernel>=6.29",
+    "matplotlib>=3.7",
+    "nbformat>=5.9",
+]
+
+[project.scripts]
+cryptohedge = "cryptohedge.cli:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["cryptohedge", "pyquant"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning", "ignore::FutureWarning"]
+
+[tool.uv]
+# uv reads the same [project] table; `uv lock` produces uv.lock.
